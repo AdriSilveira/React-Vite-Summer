@@ -1,15 +1,21 @@
 nav {
-    padding: 5px;
-    background: LimeGreen;
+    padding: 8px;
+    background: white;
     display: flex;
-    gap: 10px;
+    gap: 35px;
+    border-bottom: 3px solid lightgray;
+
   
     div.navItem a {
-      color: White;
+      color: lightgray;
       text-decoration: none;
+      font-weight: 400;
     
       &:hover {
         color: Black;
+        text-decoration: underline;
+        text-decoration-color: #00A387;
+        text-decoration-thickness: 0.2em;
       }
     }
   

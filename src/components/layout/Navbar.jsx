@@ -9,9 +9,9 @@ function Navbar() {
         <NavLink to="/fauxLogin">Faux-Lo</NavLink>
       </div>      
       
-      <div className="navItem">
+      {/* <div className="navItem">
         <NavLink to="/">Home</NavLink>
-      </div>
+      </div> */}
       
       <div className="navItem">
         <NavLink to="/modules">Modules</NavLink>

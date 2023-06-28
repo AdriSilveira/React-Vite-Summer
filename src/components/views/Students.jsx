@@ -2,6 +2,9 @@ import { CardContainer, Card } from '../UI/Card.jsx';
 import './Students.scss';
 
 function Students() {
+
+    // Initialisation --------------------------------------
+
   const studentlist= [
     { "UserID": 275, "UserFirstname": "Shole", "UserLastname": "Parker", "UserEmail": "K2955214@kingston.ac.uk", "UserRegistered": 0, "UserLevel": 4, "UserYearID": 1, "UserUsertypeID": 2, "UserImageURL": "https://img.freepik.com/free-photo/happy-man-with-long-thick-ginger-beard-has-friendly-smile_273609-16616.jpg?w=1380&t=st=1687795689~exp=1687796289~hmac=67f2bc6eccf5fafbffc22d50c70f6be7a9c3c6a8353eb5ab8207b0987b4db380", "UserUsertypeName": "Student", "UserYearName": "2022-23" },
 
@@ -23,24 +26,33 @@ function Students() {
     { "UserID": 284, "UserFirstname": "Molly", "UserLastname": "Ferreira", "UserEmail": "K8319360@kingston.ac.uk", "UserRegistered": 0, "UserLevel": 4, "UserYearID": 1, "UserUsertypeID": 2, "UserImageURL": "https://img.freepik.com/free-photo/close-up-portrait-cheerful-glamour-girl-with-cute-make-up-smiling-white-teeth-looking-happy-camera-standing-blue-background_1258-70300.jpg?w=1380&t=st=1687795888~exp=1687796488~hmac=05507fd09efd26f4267d0d8cc94896f8499b87bc7ab2e7f3cf7d67cfc30467e0", "UserUsertypeName": "Student", "UserYearName": "2022-23" }
   ];
 
+    // View --------------------------------------
+
   return (
     <>
-      <h1>Students</h1>
-      <CardContainer>
-        {
-          studentlist.map((student) => {
-            return (
-              <div className="studentCard" key={student.UserEmail}>
-                <Card>
-                  <p>{student.UserEmail.substring(0,8)}</p>
-                  <p>{`${student.UserFirstname} ${student.UserLastname}`}</p>
-                  <img src={student.UserImageURL} />
-                </Card>
-              </div>
-            )
-          })
-        }
-      </CardContainer>
+    <CardContainer> 
+      {
+      <Card>
+        <h1>Students</h1>
+      </Card>
+      }
+    </CardContainer>
+
+    <CardContainer>
+      {
+        studentlist.map((student) => {
+          return (
+            <div className="studentCard" key={student.UserEmail}>
+              <Card>
+                <p>{student.UserEmail.substring(0,8)}</p>
+                <p>{`${student.UserFirstname} ${student.UserLastname}`}</p>
+                <img src={student.UserImageURL} />
+              </Card>
+            </div>
+          )
+        })
+      }
+    </CardContainer>
     </>
   );
 }

@@ -2,6 +2,8 @@ import { CardContainer, Card } from "../UI/Card.jsx";
 import "./Modules.scss";
 
 function Modules() {
+  // Initialisation --------------------------------------
+
   const modulelist = [
     {
       ModuleID: 1,
@@ -52,6 +54,9 @@ function Modules() {
       ModuleYearName: "2022-23",
     },
   ];
+
+  // View --------------------------------------
+
   return (
     <>
       <h1>Modules</h1>
@@ -60,15 +65,9 @@ function Modules() {
           return (
             <div className="moduleCard" key={module.ModuleCode}>
               <Card>
-                <div className="moduleCardItems">
-                  <h3>{module.ModuleCode}</h3>
-                  <h3>{module.ModuleName}</h3>
-                  <img src={module.ModuleImageURL} />
-                </div>
-
-                <div className="actions">
-                  <button>Select</button>
-                </div>
+                <p>{module.ModuleCode}</p>
+                <p>{module.ModuleName}</p>
+                <img src={module.ModuleImageURL} />
               </Card>
             </div>
           );

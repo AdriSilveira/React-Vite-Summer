@@ -1,4 +1,6 @@
 import React, { useState } from 'react'; // Built in hook that allows functional components to have a state
+import { CardContainer, Card } from '../UI/Card.jsx';
+
 import './FauxLogin.scss';
 
 function Home() {
@@ -10,7 +12,7 @@ function Home() {
                                                 // kNumber stores the state variable
                                                 // setKNumber updates the state value
                                                 // '' is the initial value of the variable
-
+                                            
 
     // Handlers -----------------------------------
 
@@ -23,29 +25,43 @@ function Home() {
     const handleSubmit = (event) => { 
         event.preventDefault(); // Prevents the default form submission
         console.log("Submitted Value: ", kNumber); // Test the entered value to console        
+    
     };
 
     // View --------------------------------------
 
     return (
         <>
-            <h1>Faux Login</h1>
-            <div className="inputContainer">
-                <label htmlFor="kNumberInput" className="labelHover">
-                    Enter your K Number: 
-                </label>
-                <form onSubmit={handleSubmit}>
-                    <input
-                        type="text"
-                        id="kNumberInput"
-                        placeholder="Enter your K number"
-                        value={kNumber}
-                        onChange={handleInputChange}
-                    />
-                    <button type="submit">-Submit-</button>
-                </form> 
-            </div>  
+        <CardContainer> 
+            {
+                <Card>
+                 <h1>Faux Login</h1>
+                </Card>
+            }
+        </CardContainer>
+
+        <CardContainer> 
+            {
+                <div className="inputContainer">
+                    <label htmlFor="kNumberInput" className="labelHover">
+                        Enter your K Number: 
+                    </label>
+                    <form onSubmit={handleSubmit}>
+                        <input
+                            type="text"
+                            id="kNumberInput"
+                            placeholder="Enter your K number"
+                            value={kNumber}
+                            onChange={handleInputChange}
+                        />
+                        <button type="submit">-Submit-</button>
+                    </form> 
+                </div> 
+            }
+        </CardContainer> 
         </>
+
+
     );
 }
 

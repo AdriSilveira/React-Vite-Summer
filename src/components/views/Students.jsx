@@ -153,6 +153,8 @@ function Students() {
     },
   ];
 
+  // View --------------------------------------
+
   return (
     <>
       <h1>Students</h1>

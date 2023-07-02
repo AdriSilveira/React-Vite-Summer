@@ -59,15 +59,28 @@ function Modules() {
 
   return (
     <>
+      <CardContainer>
+        {
+          <Card>
+            <h1>Modules</h1>
+          </Card>
+        }
+      </CardContainer>
       <h1>Modules</h1>
       <CardContainer>
         {modulelist.map((module) => {
           return (
             <div className="moduleCard" key={module.ModuleCode}>
               <Card>
-                <p>{module.ModuleCode}</p>
-                <p>{module.ModuleName}</p>
-                <img src={module.ModuleImageURL} />
+                <div className="moduleCardItems">
+                  <h3>{module.ModuleCode}</h3>
+                  <h3>{module.ModuleName}</h3>
+                  <img src={module.ModuleImageURL} />
+                </div>
+
+                <div className="actions">
+                  <button>Select</button>
+                </div>
               </Card>
             </div>
           );

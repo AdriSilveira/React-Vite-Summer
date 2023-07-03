@@ -54,6 +54,10 @@ function Modules() {
       ModuleYearName: "2022-23",
     },
   ];
+  //adding a button
+  const RoundButton = () => {
+    return <button classname="actions"></button>;
+  };
 
   // View --------------------------------------
 

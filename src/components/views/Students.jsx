@@ -163,9 +163,11 @@ function Students() {
           return (
             <div className="studentCard" key={student.UserEmail}>
               <Card>
+                <div className="studentImage">
+                  <img src={student.UserImageURL} />
+                </div>
                 <p>{student.UserEmail.substring(0, 8)}</p>
                 <p>{`${student.UserFirstname} ${student.UserLastname}`}</p>
-                <img src={student.UserImageURL} />
               </Card>
             </div>
           );

@@ -13,7 +13,7 @@ function Navbar() {
       </div> */}
 
       <div className="navItem">
-        <NavLink to="/modules">Modules</NavLink>
+        <NavLink to="/">Modules</NavLink>
       </div>
 
       <div className="navItem">

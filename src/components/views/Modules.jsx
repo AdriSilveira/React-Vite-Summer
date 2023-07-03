@@ -72,14 +72,16 @@ function Modules() {
           return (
             <div className="moduleCard" key={module.ModuleCode}>
               <Card>
+                <div className="moduleImage">
+                  <img src={module.ModuleImageURL} />
+                </div>
                 <div className="moduleCardItems">
                   <h3>{module.ModuleCode}</h3>
                   <h3>{module.ModuleName}</h3>
-                  <img src={module.ModuleImageURL} />
                 </div>
 
                 <div className="actions">
-                  <button>Select</button>
+                  <button />
                 </div>
               </Card>
             </div>

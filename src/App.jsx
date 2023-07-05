@@ -1,26 +1,31 @@
-import { BrowserRouter, Routes, Route } from 'react-router-dom';
-import Layout from './components/layout/Layout.jsx';
+import { BrowserRouter, Routes, Route } from "react-router-dom";
+import { useState } from "react";
 
-import Home from './components/views/Home.jsx';
-import Modules from './components/views/Modules.jsx';
-import Students from './components/views/Students.jsx';
+import Layout from "./components/layout/Layout.jsx";
+import Login from "./components/views/Login.jsx";
+import Modules from "./components/views/Modules.jsx";
 import PageNotFound from "./components/views/404.jsx";
 
 function App() {
-  const loggedInUser = 'Graeme';
+  const [userKnumber, setData] = useState("");
 
+  const loginToApp = (loginKnumber) => {
+    setData(loginKnumber);
+    //window.location = "/modules";
+  };
+
+  // View ----------------------------------------
   return (
     <BrowserRouter>
-      <Layout loggedInUser={loggedInUser}>
+      <Layout loggedInUser={userKnumber}>
         <Routes>
-          <Route path='/' element={<Home />} />
-          <Route path='/modules' element={<Modules />} />
-          <Route path='/students' element={<Students />} />
-          <Route path="/*" element={<PageNotFound/>}/> 
+          <Route path="/" element={<Login />} />
+          <Route path="/modules" element={<Modules />} />
+          <Route path="/login" element={<Login loginToApp={loginToApp} />} />
+          <Route path="/*" element={<PageNotFound />} />
         </Routes>
       </Layout>
     </BrowserRouter>
   );
 }
-
 export default App;

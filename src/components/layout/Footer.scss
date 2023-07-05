@@ -1,11 +1,12 @@
-
 footer {
-    height: 50px;
-    padding: 0 5px;
-    background: LimeGreen;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-  
-    p.thankyou { color: White; }
+  height: 50px;
+  padding: 0 5px;
+  background: #00a387;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  p.thankyou {
+    color: black;
   }
+}

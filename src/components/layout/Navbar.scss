@@ -1,16 +1,20 @@
 nav {
-    padding: 5px;
-    background: LimeGreen;
-    display: flex;
-    gap: 10px;
-  
-    div.navItem a {
-      color: White;
-      text-decoration: none;
-    
-      &:hover {
-        color: Black;
-      }
+  padding: 8px;
+  background: white;
+  display: flex;
+  gap: 35px;
+  border-bottom: 3px solid lightgray;
+
+  div.navItem a {
+    color: rgb(0, 0, 0);
+    text-decoration: none;
+    font-weight: 400;
+
+    &:hover {
+      color: Black;
+      text-decoration: underline;
+      text-decoration-color: #00a387;
+      text-decoration-thickness: 0.2em;
     }
-  
   }
+}

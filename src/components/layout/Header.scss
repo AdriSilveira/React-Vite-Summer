@@ -1,10 +1,14 @@
 header {
-    padding: 0px;
-    background: Black;
+  padding: 0px 30px;
+  background: #00a387;
+  font-size: 10px;
+  padding-top: 10px;
 
-
-    h1 {color: white;}
-    p.welcome {color: limegreen;
-    
-    }
+  h1 {
+    color: white;
+  }
+  p.welcome {
+    color: #ffffff;
+    text-align: right;
+  }
 }

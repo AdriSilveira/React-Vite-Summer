@@ -1,4 +1,29 @@
 div.moduleCard {
-    width: 250px;
-    height: 300px;
-  }
+  width: 250px;
+  height: 300px;
+}
+
+.moduleCard:hover {
+  transform: scale(1.1);
+}
+.moduleImage img {
+  width: 100%;
+  height: 100%;
+  display: block;
+  border-radius: 5px 5px 0px 0px;
+}
+
+.moduleCardItems h3 {
+  color: rgb(6, 151, 144);
+  padding: 6px 3px 3px 6px;
+}
+
+.actions button {
+  border-radius: 50px;
+  padding: 10px 15px;
+  cursor: pointer; /*show a pointer cursor*/
+  color: light gray;
+  border: none;
+  background-color: gray;
+  margin: 0px 2px 2px 4px;
+}

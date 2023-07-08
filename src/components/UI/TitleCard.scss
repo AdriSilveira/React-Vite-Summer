@@ -10,6 +10,11 @@ div.TitleCardContainer {
   background-color: white;
   box-shadow: 2px 2px 2px 2px rgba(70, 70, 70, 0.3);
 
+  hr {
+    width: 0.5cm;
+    color: black;
+  }
+
   div.TitleCard {
     width: 100%;
     height: 100%;

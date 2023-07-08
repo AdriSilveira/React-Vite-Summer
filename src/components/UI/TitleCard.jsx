@@ -1,7 +1,11 @@
 import "./TitleCard.scss";
 
 export function TitleCardContainer(props) {
-  return <div className="TitleCardContainer"> {props.children} </div>;
+  return (
+    <>
+      <div className="TitleCardContainer"> {props.children} </div>
+    </>
+  );
 }
 
 export function TitleCard(props) {

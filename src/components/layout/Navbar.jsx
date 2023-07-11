@@ -3,7 +3,7 @@ import "./Navbar.scss";
 
 function Navbar() {
   return (
-    <nav>
+    <nav className="navbar">
       <div className="navItem">
         <NavLink to="/fauxLogin">Faux-Lo</NavLink>
       </div>

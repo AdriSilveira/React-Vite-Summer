@@ -5,19 +5,11 @@ function Navbar() {
   return (
     <nav className="navbar">
       <div className="navItem">
-        <NavLink to="/fauxLogin">Faux-Lo</NavLink>
-      </div>
-
-      {/* <div className="navItem">
-        <NavLink to="/">Home</NavLink>
-      </div> */}
-
-      <div className="navItem">
-        <NavLink to="/">Modules</NavLink>
+        <NavLink to="/login">Login</NavLink>
       </div>
 
       <div className="navItem">
-        <NavLink to="/students">Students</NavLink>
+        <NavLink to="/modules">Modules</NavLink>
       </div>
     </nav>
   );

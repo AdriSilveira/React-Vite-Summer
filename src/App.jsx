@@ -1,27 +1,31 @@
 import { BrowserRouter, Routes, Route } from "react-router-dom";
+import { useState } from "react";
 import Layout from "./components/layout/Layout.jsx";
+import Login from "./components/views/Login.jsx";
 import Modules from "./components/views/Modules.jsx";
-import Students from "./components/views/Students.jsx";
 import PageNotFound from "./components/views/404.jsx";
-import FauxLogin from "./components/views/FauxLogin.jsx";
-import './App.scss';
+import "./App.scss";
 
 function App() {
-  const loggedInUser = "Adriana";
+  const [userKnumber, setData] = useState("");
 
+  const loginToApp = (loginKnumber) => {
+    setData(loginKnumber);
+    //window.location = "/modules";
+  };
+
+  // View ----------------------------------------
   return (
     <BrowserRouter>
-      <Layout loggedInUser={loggedInUser}>
+      <Layout loggedInUser={userKnumber}>
         <Routes>
-          <Route path="/" element={<Modules />} />
+          <Route path="/" element={<Login />} />
           <Route path="/modules" element={<Modules />} />
-          <Route path="/students" element={<Students />} />
+          <Route path="/login" element={<Login loginToApp={loginToApp} />} />
           <Route path="/*" element={<PageNotFound />} />
-          <Route path="/fauxLogin" element={<FauxLogin />} />
         </Routes>
       </Layout>
     </BrowserRouter>
   );
 }
-
 export default App;

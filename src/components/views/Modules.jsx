@@ -63,7 +63,14 @@ function Modules() {
 
   return (
     <>
-      <h1 className="pageTitle">Modules</h1>
+      <CardContainer>
+        {
+          <Card>
+            <h1>Modules</h1>
+          </Card>
+        }
+      </CardContainer>
+
       <CardContainer>
         {modulelist.map((module) => {
           return (

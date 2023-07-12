@@ -2,10 +2,20 @@ import "./Card.scss";
 import propTypes from "prop-types";
 
 export function CardContainer(props) {
+  //Initialisation---------------------------------
+  //State------------------------------------------
+  //Handlers---------------------------------------
+  //View-------------------------------------------
+
   return <div className="cardContainer"> {props.children} </div>;
 }
 
 CardContainer.propTypes = {
+  //Initialisation---------------------------------
+  //State------------------------------------------
+  //Handlers---------------------------------------
+  //View-------------------------------------------
+
   children: propTypes.element,
 };
 

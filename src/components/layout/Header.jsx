@@ -1,7 +1,13 @@
+import PropTypes from "prop-types";
 import { NavLink } from "react-router-dom";
 import "./Header.scss";
 
 function Header(props) {
+  //Initialisation---------------------------------
+  //State------------------------------------------
+  //Handlers---------------------------------------
+  //View-------------------------------------------
+
   return (
     <header>
       <div className="logo">
@@ -17,5 +23,8 @@ function Header(props) {
     </header>
   );
 }
+Header.prototype = {
+  loggedInUser: PropTypes.string.isRequired,
+};
 
 export default Header;

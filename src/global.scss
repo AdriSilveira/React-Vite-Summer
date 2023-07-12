@@ -1,0 +1,27 @@
+$black: #000000;
+$gray:#7F7F7F;
+$shade:#D9D9D9;
+$white: #FFFFFF;
+$lightGray: #F5F6F8;
+$red: #AB1515;
+$green: #00A387;
+$blue: #35409C;
+
+$border-radius: 1px !default;
+$box-shadow: 0 2px 2px 0 rgba(9, 9, 9, 0.06) !default;
+
+code {
+  border-radius: $border-radius;
+  box-shadow: $box-shadow;
+}
+
+
+$width: 768px; 
+
+@mixin mobile{
+  @media (max-width: #{$width}){
+    @content
+    
+  }
+}
+

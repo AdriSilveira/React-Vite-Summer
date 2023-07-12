@@ -63,14 +63,7 @@ function Modules() {
 
   return (
     <>
-      <CardContainer>
-        {
-          <Card>
-            <h1>Modules</h1>
-          </Card>
-        }
-      </CardContainer>
-      <h1>Modules</h1>
+      <h1 className="pageTitle">Modules</h1>
       <CardContainer>
         {modulelist.map((module) => {
           return (
@@ -80,12 +73,14 @@ function Modules() {
                   <img src={module.ModuleImageURL} />
                 </div>
                 <div className="moduleCardItems">
-                  <h3>{module.ModuleCode}</h3>
                   <h3>{module.ModuleName}</h3>
+                  <h4>{module.ModuleCode}</h4>
                 </div>
 
                 <div className="actions">
-                  <button />
+                  <button></button>
+                  <button></button>
+                  <button></button>
                 </div>
               </Card>
             </div>

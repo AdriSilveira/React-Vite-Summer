@@ -4,6 +4,7 @@ import Modules from "./components/views/Modules.jsx";
 import Students from "./components/views/Students.jsx";
 import PageNotFound from "./components/views/404.jsx";
 import FauxLogin from "./components/views/FauxLogin.jsx";
+import './App.scss';
 
 function App() {
   const loggedInUser = "Adriana";

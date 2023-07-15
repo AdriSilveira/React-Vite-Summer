@@ -1,9 +1,13 @@
-import { BrowserRouter, Routes, Route } from "react-router-dom";
+import { BrowserRouter, Routes, Route, Router } from "react-router-dom";
 import { useState } from "react";
 import Layout from "./components/layout/Layout.jsx";
 import Login from "./components/views/Login.jsx";
-import Modules from "./components/views/Modules.jsx";
+import Home from "./components/views/Home.jsx";
 import PageNotFound from "./components/views/404.jsx";
+import Programming1Groups from "./components/views/GroupsProgramming.jsx";
+import RequirementAnalisysDesingGroups from "./components/views/RequirementAnalisysDesingGroups.jsx";
+import ProfessionalEnvironmentGroups from "./components/views/ProfessionalEnvironmentGroups.jsx";
+import ComputingFundamentalsGroups from "./components/views/ComputingFundamentalsGroups.jsx";
 import "./App.scss";
 
 function App() {
@@ -20,9 +24,22 @@ function App() {
       <Layout loggedInUser={userKnumber}>
         <Routes>
           <Route path="/" element={<Login />} />
-          <Route path="/modules" element={<Modules />} />
+          <Route path="/home" element={<Home />} />
           <Route path="/login" element={<Login loginToApp={loginToApp} />} />
           <Route path="/*" element={<PageNotFound />} />
+          <Route path="/groupsProgramming 1" element={<Programming1Groups />} />
+          <Route
+            path="/groupsRequirements Analysis and Design"
+            element={<RequirementAnalisysDesingGroups />}
+          />
+          <Route
+            path="/groupsProfessional Environments 1"
+            element={<ProfessionalEnvironmentGroups />}
+          />
+          <Route
+            path="/groupsComputing Fundamentals"
+            element={<ComputingFundamentalsGroups />}
+          />
         </Routes>
       </Layout>
     </BrowserRouter>

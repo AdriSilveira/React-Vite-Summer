@@ -9,7 +9,7 @@ function Navbar() {
       </div>
 
       <div className="navItem">
-        <NavLink to="/modules">Modules</NavLink>
+        <NavLink to="/home">Home</NavLink>
       </div>
     </nav>
   );

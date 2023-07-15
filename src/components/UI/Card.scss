@@ -1,25 +1,23 @@
 .cardContainer {
   border-radius: 3px;
-  height: 200px;
+
   padding: 30px;
   display: flex;
   flex-wrap: wrap;
   gap: 60px;
 
   .card {
-    .card {
-      position: relative;
-      width: 100%;
-      height: 300px;
-      border-radius: 10px;
-      box-shadow: 0 4px 10px rgb(0 0 0 / 0.2);
+    position: relative;
+    width: 100%;
+    height: 300px;
+    border-radius: 10px;
+    box-shadow: 0 4px 10px rgb(0 0 0 / 0.2);
 
-      .moduleImage img {
-        width: 100%;
-        height: 145px;
-        display: block;
-        border-radius: 5px 5px 0px 0px;
-      }
+    .moduleImage img {
+      width: 100%;
+      height: 145px;
+      display: block;
+      border-radius: 5px 5px 0px 0px;
     }
   }
 }

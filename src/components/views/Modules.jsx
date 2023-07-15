@@ -1,3 +1,4 @@
+import { Link } from "react-router-dom";
 import { CardContainer, Card } from "../UI/Card.jsx";
 import ListOfModules from "../data/ListOfModules.js";
 import "./Modules.scss";
@@ -13,36 +14,40 @@ function Modules() {
 
   return (
     <>
-      <CardContainer>
-        {
-          <Card>
+      {
+        <>
+          <CardContainer>
             <h1>Modules</h1>
+          </CardContainer>
+          <Card>
             <CardContainer>
               {ListOfModules.map((module) => {
                 return (
                   <div className="moduleCard" key={module.ModuleCode}>
-                    <Card>
-                      <div className="moduleImage">
-                        <img src={module.ModuleImageURL} />
-                      </div>
-                      <div className="moduleCardItems">
-                        <h3>{module.ModuleName}</h3>
-                        <h4>{module.ModuleCode}</h4>
-                      </div>
+                    <Link to={`/groups${module.ModuleName}`}>
+                      <Card>
+                        <div className="moduleImage">
+                          <img src={module.ModuleImageURL} />
+                        </div>
+                        <div className="moduleCardItems">
+                          <h3>{module.ModuleName}</h3>
+                          <h4>{module.ModuleCode}</h4>
+                        </div>
 
-                      <div className="actions">
-                        <button></button>
-                        <button></button>
-                        <button></button>
-                      </div>
-                    </Card>
+                        <div className="actions">
+                          <button></button>
+                          <button>Groups</button>
+                          <button></button>
+                        </div>
+                      </Card>
+                    </Link>
                   </div>
                 );
               })}
             </CardContainer>
           </Card>
-        }
-      </CardContainer>
+        </>
+      }
     </>
   );
 }

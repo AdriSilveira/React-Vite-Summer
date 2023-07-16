@@ -24,10 +24,11 @@ function App() {
       <Layout loggedInUser={userKnumber}>
         <Routes>
           <Route path="/" element={<Login />} />
-          <Route path="/home" element={<Home />} />
+          <Route path="/home" element={<Home isModules={true} />} />
           <Route path="/login" element={<Login loginToApp={loginToApp} />} />
           <Route path="/*" element={<PageNotFound />} />
-          <Route path="/groupsProgramming 1" element={<Programming1Groups />} />
+
+          {/*<Route path="/groupsProgramming 1" element={<Programming1Groups />} />
           <Route
             path="/groupsRequirements Analysis and Design"
             element={<RequirementAnalisysDesingGroups />}
@@ -39,7 +40,7 @@ function App() {
           <Route
             path="/groupsComputing Fundamentals"
             element={<ComputingFundamentalsGroups />}
-          />
+          /> */}
         </Routes>
       </Layout>
     </BrowserRouter>

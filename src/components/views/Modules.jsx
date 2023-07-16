@@ -3,7 +3,7 @@ import { CardContainer, Card } from "../UI/Card.jsx";
 import ListOfModules from "../data/ListOfModules.js";
 import "./Modules.scss";
 
-function Modules() {
+function Modules({ setIsModulesView }) {
   // Initialisation --------------------------------------
   //adding a button
   const RoundButton = () => {
@@ -11,6 +11,9 @@ function Modules() {
   };
 
   // View --------------------------------------
+  const selectModule = () => {
+    setIsModulesView(false);
+  };
 
   return (
     <>
@@ -24,7 +27,7 @@ function Modules() {
               {ListOfModules.map((module) => {
                 return (
                   <div className="moduleCard" key={module.ModuleCode}>
-                    <Link to={`/groups${module.ModuleName}`}>
+                    <div onClick={selectModule}>
                       <Card>
                         <div className="moduleImage">
                           <img src={module.ModuleImageURL} />
@@ -40,7 +43,7 @@ function Modules() {
                           <button></button>
                         </div>
                       </Card>
-                    </Link>
+                    </div>
                   </div>
                 );
               })}

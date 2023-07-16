@@ -1,12 +1,21 @@
+import Groups from "./Groups";
 import Modules from "./Modules";
-function Home() {
+import { useState } from "react";
+
+function Home({ isModules }) {
   // Initialisation --------------------------------------
+  const [isModulesView, setIsModulesView] = useState(true);
+  console.log(isModulesView);
 
   // View --------------------------------------
 
   return (
     <>
-      <Modules></Modules>
+      {isModulesView ? (
+        <Modules setIsModulesView={setIsModulesView}></Modules>
+      ) : (
+        <Groups></Groups>
+      )}
     </>
   );
 }

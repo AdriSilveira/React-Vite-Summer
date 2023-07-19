@@ -1,4 +1,5 @@
 import { Link } from "react-router-dom";
+import { useState, useEffect } from "react";
 import { CardContainer, Card } from "../UI/Card.jsx";
 import ListOfModules from "../data/ListOfModules.js";
 import "./Modules.scss";
@@ -9,6 +10,29 @@ function Modules({ setIsModulesView }) {
   const RoundButton = () => {
     return <button classname="actions"></button>;
   };
+  const loggedInUserGroup = 13;
+  const apiURL = "http://softwarehub.uk/unibase/api";
+  const myGroupEndpoint = `${apiURL}/modules`;
+
+  // State ---------------------------------------
+  const [modules, setModules] = useState(null);
+
+  const apiGet = async (endpoint) => {
+    const response = await fetch(endpoint);
+    const result = await response.json();
+    setModules(result);
+  };
+
+  useEffect(() => {
+    apiGet(myGroupEndpoint);
+  }, [myGroupEndpoint]);
+
+  // Handlers ------------------------------------
+  const handleAdd = (student) => {
+    student.UserID = Math.floor(10000 * Math.random());
+    setStudents([...students, student]);
+    console.log(`Length of students: ${students.length}`);
+  };
 
   // View --------------------------------------
   const selectModule = () => {
@@ -17,14 +41,18 @@ function Modules({ setIsModulesView }) {
 
   return (
     <>
-      {
+      {!modules ? (
+        <p>Loading records ...</p>
+      ) : modules.length === 0 ? (
+        <p>No records found.</p>
+      ) : (
         <>
           <CardContainer>
             <h1>Modules</h1>
           </CardContainer>
           <Card>
             <CardContainer>
-              {ListOfModules.map((module) => {
+              {modules.map((module) => {
                 return (
                   <div className="moduleCard" key={module.ModuleCode}>
                     <div onClick={selectModule}>
@@ -50,7 +78,7 @@ function Modules({ setIsModulesView }) {
             </CardContainer>
           </Card>
         </>
-      }
+      )}
     </>
   );
 }

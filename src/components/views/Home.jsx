@@ -9,6 +9,8 @@ function Home({ isModules }) {
   console.log(isModulesView);
   const [isGroupView, setIsGroupView] = useState(true);
   console.log(isGroupView);
+  const [selectedGroupID, setSelectedGroupID] = useState(1);
+  console.log(selectedGroupID);
 
   // View --------------------------------------
 
@@ -17,9 +19,13 @@ function Home({ isModules }) {
       {isModulesView ? (
         <Modules setIsModulesView={setIsModulesView}></Modules>
       ) : isGroupView ? (
-        <Groups setIsGroupView={setIsGroupView}></Groups>
+        <Groups
+          setIsGroupView={setIsGroupView}
+          setSelectedGroupID={setSelectedGroupID}
+          setIsModulesView={setIsModulesView}
+        ></Groups>
       ) : (
-        <GroupInfo></GroupInfo>
+        <GroupInfo selectedGroupID={selectedGroupID}></GroupInfo>
       )}
     </>
   );

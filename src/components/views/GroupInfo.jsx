@@ -3,13 +3,13 @@ import { useState, useEffect } from "react";
 import { CardContainer, Card } from "../UI/Card.jsx";
 import "./Modules.scss";
 
-function GroupInfo({ setIsModulesView, setIsGroupView }) {
+function GroupInfo({ selectedGroupID }) {
   // Initialisation --------------------------------------
   //adding a button
   const RoundButton = () => {
     return <button classname="actions"></button>;
   };
-  const SelectedGroup = 1;
+  const SelectedGroup = selectedGroupID;
   const apiURL = "http://softwarehub.uk/unibase/api";
   const myGroupEndpoint = `${apiURL}/users/groups/${SelectedGroup}`;
 

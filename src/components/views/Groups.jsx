@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import { CardContainer, Card } from "../UI/Card.jsx";
 import "./Groups.scss";
 
-function Groups({ setIsModulesView, setIsGroupView }) {
+function Groups({ setIsModulesView, setIsGroupView, setSelectedGroupID }) {
   // State for storing the groups
   const [groups, setGroups] = useState([]);
 
@@ -59,8 +59,9 @@ function Groups({ setIsModulesView, setIsGroupView }) {
   }, []);
 
   // View --------------------------------------
-  const selectGroup = () => {
+  const selectGroup = (groupId) => {
     setIsGroupView(false);
+    setSelectedGroupID(groupId);
   };
 
   return (
@@ -84,9 +85,7 @@ function Groups({ setIsModulesView, setIsGroupView }) {
                     <p key={index}>{member}</p>
                   ))}
                   <div className="actions">
-                    <div onClick={selectGroup}>
-                      <button>More</button>
-                    </div>
+                    <button onClick={selectGroup(group.id)}>More</button>
                   </div>
                 </div>
               )}

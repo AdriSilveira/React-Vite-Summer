@@ -2,9 +2,13 @@ import React, { useState, useEffect } from "react";
 import { CardContainer, Card } from "../UI/Card.jsx";
 import "./Groups.scss";
 
-function Groups({ setIsModulesView }) {
+function Groups({ setIsModulesView, setIsGroupView }) {
   // State for storing the groups
   const [groups, setGroups] = useState([]);
+
+  const RoundButton = () => {
+    return <button classname="actions"></button>;
+  };
 
   // Function to handle going back to the Modules view
   const selectModule = () => {
@@ -54,6 +58,11 @@ function Groups({ setIsModulesView }) {
     fetchGroups();
   }, []);
 
+  // View --------------------------------------
+  const selectGroup = () => {
+    setIsGroupView(false);
+  };
+
   return (
     <>
       <CardContainer>
@@ -75,7 +84,9 @@ function Groups({ setIsModulesView }) {
                     <p key={index}>{member}</p>
                   ))}
                   <div className="actions">
-                    <button>More</button>
+                    <div onClick={selectGroup}>
+                      <button>More</button>
+                    </div>
                   </div>
                 </div>
               )}

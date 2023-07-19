@@ -24,7 +24,7 @@ function App() {
       <Layout loggedInUser={userKnumber}>
         <Routes>
           <Route path="/" element={<Login />} />
-          <Route path="/home" element={<Home isModules={true} />} />
+          <Route path="/home" element={<Home isModules={(true, true)} />} />
           <Route path="/login" element={<Login loginToApp={loginToApp} />} />
           <Route path="/*" element={<PageNotFound />} />
 

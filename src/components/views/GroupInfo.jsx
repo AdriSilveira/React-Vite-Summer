@@ -3,7 +3,7 @@ import { useState, useEffect } from "react";
 import { CardContainer, Card } from "../UI/Card.jsx";
 import "./Modules.scss";
 
-function Modules({ setIsModulesView }) {
+function GroupInfo({ setIsModulesView, setIsGroupView }) {
   // Initialisation --------------------------------------
   //adding a button
   const RoundButton = () => {
@@ -11,7 +11,7 @@ function Modules({ setIsModulesView }) {
   };
   const SelectedGroup = 1;
   const apiURL = "http://softwarehub.uk/unibase/api";
-  const myGroupEndpoint = `${apiURL}users/groups/${SelectedGroup}`;
+  const myGroupEndpoint = `${apiURL}/users/groups/${SelectedGroup}`;
 
   // State ---------------------------------------
   const [GroupStudents, setGroupStudents] = useState(null);
@@ -27,11 +27,11 @@ function Modules({ setIsModulesView }) {
   }, [myGroupEndpoint]);
 
   // Handlers ------------------------------------
-  // View --------------------------------------
-  const selectModule = () => {
-    setIsModulesView(false);
+  // Function to handle going back to the Modules view
+  const selectGroup = () => {
+    setIsGroupView(true);
   };
-
+  // View --------------------------------------
   return (
     <>
       {!GroupStudents ? (
@@ -41,30 +41,28 @@ function Modules({ setIsModulesView }) {
       ) : (
         <>
           <CardContainer>
-            <h1>Modules</h1>
+            <h1>Group {SelectedGroup}</h1>
           </CardContainer>
           <Card>
             <CardContainer>
               {GroupStudents.map((students) => {
                 return (
                   <div className="moduleCard" key={students.UserID}>
-                    <div onClick={selectModule}>
-                      <Card>
-                        <div className="moduleImage">
-                          <img src={students.UserImageURL} />
-                        </div>
-                        <div className="moduleCardItems">
-                          <h3>{students.UserFirstname}</h3>
-                          <h4>{students.UserLastname}</h4>
-                        </div>
+                    <Card>
+                      <div className="moduleImage">
+                        <img src={students.UserImageURL} />
+                      </div>
+                      <div className="moduleCardItems">
+                        <h3>{students.UserFirstname}</h3>
+                        <h4>{students.UserLastname}</h4>
+                      </div>
 
-                        <div className="actions">
-                          <button></button>
-                          <button>Groups</button>
-                          <button></button>
-                        </div>
-                      </Card>
-                    </div>
+                      <div className="actions">
+                        <button></button>
+                        <button>Groups</button>
+                        <button></button>
+                      </div>
+                    </Card>
                   </div>
                 );
               })}
@@ -76,4 +74,4 @@ function Modules({ setIsModulesView }) {
   );
 }
 
-export default Modules;
+export default GroupInfo;

@@ -4,7 +4,7 @@ import { CardContainer, Card } from "../UI/Card.jsx";
 import ListOfModules from "../data/ListOfModules.js";
 import "./Modules.scss";
 
-function Modules({ setIsModulesView }) {
+function Modules({ setIsModulesView, setIsGroupView }) {
   // Initialisation --------------------------------------
   //adding a button
   const RoundButton = () => {

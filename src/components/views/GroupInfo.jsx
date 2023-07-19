@@ -1,7 +1,6 @@
 import { Link } from "react-router-dom";
 import { useState, useEffect } from "react";
 import { CardContainer, Card } from "../UI/Card.jsx";
-import ListOfModules from "../data/ListOfModules.js";
 import "./Modules.scss";
 
 function Modules({ setIsModulesView }) {
@@ -10,17 +9,17 @@ function Modules({ setIsModulesView }) {
   const RoundButton = () => {
     return <button classname="actions"></button>;
   };
-  const loggedInUser = 13;
+  const SelectedGroup = 1;
   const apiURL = "http://softwarehub.uk/unibase/api";
-  const myGroupEndpoint = `${apiURL}/modules`;
+  const myGroupEndpoint = `${apiURL}users/groups/${SelectedGroup}`;
 
   // State ---------------------------------------
-  const [modules, setModules] = useState(null);
+  const [GroupStudents, setGroupStudents] = useState(null);
 
   const apiGet = async (endpoint) => {
     const response = await fetch(endpoint);
     const result = await response.json();
-    setModules(result);
+    setGroupStudents(result);
   };
 
   useEffect(() => {
@@ -28,7 +27,6 @@ function Modules({ setIsModulesView }) {
   }, [myGroupEndpoint]);
 
   // Handlers ------------------------------------
-
   // View --------------------------------------
   const selectModule = () => {
     setIsModulesView(false);
@@ -36,9 +34,9 @@ function Modules({ setIsModulesView }) {
 
   return (
     <>
-      {!modules ? (
+      {!GroupStudents ? (
         <p>Loading records ...</p>
-      ) : modules.length === 0 ? (
+      ) : GroupStudents.length === 0 ? (
         <p>No records found.</p>
       ) : (
         <>
@@ -47,17 +45,17 @@ function Modules({ setIsModulesView }) {
           </CardContainer>
           <Card>
             <CardContainer>
-              {modules.map((module) => {
+              {GroupStudents.map((students) => {
                 return (
-                  <div className="moduleCard" key={module.ModuleCode}>
+                  <div className="moduleCard" key={students.UserID}>
                     <div onClick={selectModule}>
                       <Card>
                         <div className="moduleImage">
-                          <img src={module.ModuleImageURL} />
+                          <img src={students.UserImageURL} />
                         </div>
                         <div className="moduleCardItems">
-                          <h3>{module.ModuleName}</h3>
-                          <h4>{module.ModuleCode}</h4>
+                          <h3>{students.UserFirstname}</h3>
+                          <h4>{students.UserLastname}</h4>
                         </div>
 
                         <div className="actions">

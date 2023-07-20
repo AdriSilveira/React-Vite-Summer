@@ -1,39 +1,44 @@
 @import "../../global.scss";
 
 .groupCard {
-    display: flex;
-    flex-direction: column;
-    margin-bottom: 20px;
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 20px;
 }
-  
+
 .groupHeader {
-      cursor: pointer;
-      h3 {
-        margin: 0;
-        padding: 10px;
-        border-radius: 10px;
-        background-color: #f2f2f2;
-      }
-    }
-  
-    .groupDropdown {
-      background-color: #f8f8f8;
-      padding: 10px;
-      margin-top: 10px;
-      border-radius: 10px;
+  cursor: pointer;
+  h3 {
+    margin: 0;
+    padding: 10px;
+    border-radius: 10px;
+    background-color: #f2f2f2;
+  }
+}
 
-  
-      p {
-        margin: 0;
-        padding: 5px;
-      }
-    }
+.groupDropdown {
+  background-color: #f8f8f8;
+  padding: 10px;
+  margin-top: 10px;
+  border-radius: 10px;
 
-    button {
-        border-radius: 5px;
-        margin: 20px 40px;
-        align-items: center;
-        padding: 5px 5px;
-        cursor: pointer;
+  p {
+    margin: 0;
+    padding: 5px;
+  }
+}
 
-      }
+.button {
+  &::before {
+    content: "Button";
+    display: block;
+    background-image: linear-gradient(to right, #1fa2ff, #12d8fa, #a6ffcb);
+    position: absolute;
+    top: -3px;
+    left: -3px;
+    width: calc(100% + 6px);
+    height: calc(100% + 6px);
+    border-radius: inherit;
+    z-index: -1;
+  }
+}

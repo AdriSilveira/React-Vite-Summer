@@ -33,7 +33,7 @@
 
   .actions {
     position: absolute;
-    bottom: 15px;
+    bottom: 14px;
     left: 0;
     display: flex;
     justify-content: space-between;
@@ -43,11 +43,11 @@
 
     button {
       height: 32px;
-      width: 32px;
-      border-radius: 50%;
+      width: 50px;
+      border-radius: 15%;
       cursor: pointer;
       color: $black;
-      border: none;
+      border: 2px solid black;
       background-color: $shade;
     }
   }

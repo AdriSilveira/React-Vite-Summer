@@ -62,7 +62,7 @@ function Modules({ setIsModulesView }) {
 
                         <div className="actions">
                           <button></button>
-                          <button>Groups</button>
+                          <button></button>
                           <button></button>
                         </div>
                       </Card>

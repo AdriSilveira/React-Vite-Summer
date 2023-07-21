@@ -57,11 +57,11 @@ function GroupInfo({ selectedGroupID }) {
                         <h4>{students.UserLastname}</h4>
                       </div>
 
-                      <div className="actions">
+                      {/* <div className="actions">
                         <button></button>
                         <button>Groups</button>
                         <button></button>
-                      </div>
+                      </div> */}
                     </Card>
                   </div>
                 );

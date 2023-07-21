@@ -12,6 +12,8 @@
   align-items: self-start;
   width: 250px;
   height: 300px;
+  max-width: 200px;
+  max-height: 300px;
   transition: all 1s ease;
 
   .moduleCardItems {
@@ -42,12 +44,12 @@
     padding: 0 20px;
 
     button {
-      height: 32px;
-      width: 50px;
+      height: 20px;
+      width: 40px;
       border-radius: 15%;
       cursor: pointer;
       color: $black;
-      border: 2px solid black;
+      border: 1px solid rgba(158, 154, 167, 0.971);
       background-color: $shade;
     }
   }

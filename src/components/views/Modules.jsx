@@ -10,9 +10,9 @@ function Modules({ setIsModulesView }) {
   const RoundButton = () => {
     return <button classname="actions"></button>;
   };
-  const loggedInUser = 13;
+  // const loggedInUser = 276;
   const apiURL = "http://softwarehub.uk/unibase/api";
-  const myGroupEndpoint = `${apiURL}/modules`;
+  const myGroupEndpoint = `${apiURL}/modules/users/276`;
 
   // State ---------------------------------------
   const [modules, setModules] = useState(null);
@@ -60,11 +60,11 @@ function Modules({ setIsModulesView }) {
                           <h4>{module.ModuleCode}</h4>
                         </div>
 
-                        <div className="actions">
+                        {/* <div className="actions">
                           <button></button>
                           <button></button>
                           <button></button>
-                        </div>
+                        </div> */}
                       </Card>
                     </div>
                   </div>

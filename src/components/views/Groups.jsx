@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { CardContainer, Card } from "../UI/Card.jsx";
+import { Link } from 'react-router-dom';
 import "./Groups.scss";
 
 function Groups({ setIsModulesView, setIsGroupView, setSelectedGroupID }) {

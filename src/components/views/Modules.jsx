@@ -45,33 +45,32 @@ function Modules({ setIsModulesView }) {
           <CardContainer>
             <h1>Modules</h1>
           </CardContainer>
-          <Card>
-            <CardContainer>
-              {modules.map((module) => {
-                return (
-                  <div className="moduleCard" key={module.ModuleCode}>
-                    <div onClick={selectModule}>
-                      <Card>
-                        <div className="moduleImage">
-                          <img src={module.ModuleImageURL} />
-                        </div>
-                        <div className="moduleCardItems">
-                          <h3>{module.ModuleName}</h3>
-                          <h4>{module.ModuleCode}</h4>
-                        </div>
 
-                        {/* <div className="actions">
+          <CardContainer>
+            {modules.map((module) => {
+              return (
+                <div className="moduleCard" key={module.ModuleCode}>
+                  <div onClick={selectModule}>
+                    <Card>
+                      <div className="moduleImage">
+                        <img src={module.ModuleImageURL} />
+                      </div>
+                      <div className="moduleCardItems">
+                        <h3>{module.ModuleName}</h3>
+                        <h4>{module.ModuleCode}</h4>
+                      </div>
+
+                      {/* <div className="actions">
                           <button></button>
                           <button></button>
                           <button></button>
                         </div> */}
-                      </Card>
-                    </div>
+                    </Card>
                   </div>
-                );
-              })}
-            </CardContainer>
-          </Card>
+                </div>
+              );
+            })}
+          </CardContainer>
         </>
       )}
     </>

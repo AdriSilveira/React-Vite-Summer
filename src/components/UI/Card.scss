@@ -1,8 +1,10 @@
 .cardContainer {
-  border-radius: 3px;
+  border-radius: 3px 5px 5px 5px;
   padding: 30px;
   display: flex;
   flex-wrap: wrap;
+  gap: 50px;
+  align-items: center;
 
   .card {
     position: relative;
@@ -10,7 +12,5 @@
     height: 100%;
     border-radius: 10px;
     box-shadow: 0 4px 10px rgb(0 0 0 / 0.2);
-    align-items: center;
-    // gap: 30px;
   }
 }

@@ -93,7 +93,9 @@ function Groups({ setIsModulesView, setIsGroupView, setSelectedGroupID }) {
           ))}
         </CardContainer>
       </Card>
-      <button onClick={selectModule}>Back to Modules</button>
+      <div className="button-backModules">
+        <button onClick={selectModule}>Back to Modules</button>
+      </div>
     </>
   );
 }

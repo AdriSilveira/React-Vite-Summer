@@ -11,22 +11,23 @@ function ModuleCard({module}) {
 
   // View ------------------------------------------------
     return (
-        <div className="moduleCard" >
-        <Card>
-          <div className="moduleImage">
-            <img src={module.ModuleImageURL} />
-          </div>
-          <div className="moduleCardItems">
-            <h3>{module.ModuleName}</h3>
-            <h4>{module.ModuleCode}</h4>                
-          </div>
+        <div className="moduleCard">
+            
+            <Card>
+            <div className="moduleImage">
+                <img src={module.ModuleImageURL} />
+            </div>
+            <div className="moduleCardItems">
+                <h3>{module.ModuleName}</h3>
+                <h4>{module.ModuleCode}</h4>                
+            </div>
 
-          <div className="actions">
-            <Link to ="/groupinfo">
-              <button>Groups</button>
-            </Link>
-          </div>
-        </Card>
+            <div className="actions">
+                {/*<Link to ="/groups">*/}
+                <button>Groups</button>
+                {/*</div>/</Link>*/}
+            </div>
+            </Card>
         </div>
     );
 }

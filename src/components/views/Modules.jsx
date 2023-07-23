@@ -5,7 +5,7 @@ import { CardContainer, Card } from "../UI/Card.jsx";
 import ModuleCard from "../Entity/Module/ModuleCard.jsx";
 import "./Modules.scss";
 
-function Modules() {
+function Modules({setIsModulesView}) {
   // Initialisation --------------------------------------
 
   /*const modulelist = [
@@ -63,7 +63,7 @@ function Modules() {
     return <button className="buttonActions"></button>;
   };
 
-  // const loggedInUserGroup = 820;
+   const loggedInUser = 13;
   const apiURL = 'http://softwarehub.uk/unibase/api';
   const myModulesEndpoint = `${apiURL}/modules`;
 
@@ -91,7 +91,17 @@ function Modules() {
 
   // View ------------------------------------------------
 
+  const selectModule = () => {
+    setIsModulesView(false);
+  };
+
   return (
+    <>
+      {!modules ? (
+        <p>Loading Records ...</p>
+      ) : modules.length === 0 ? (
+        <p>No records found ...</p>
+      ) : ( 
     <>
       <CardContainer>
         {
@@ -109,17 +119,14 @@ function Modules() {
 
       {showForm && <ModuleForm onCancel={handleCancel} onSuccess={handleSuccess} />}
 
-      {!modules ? (
-        <p>Loading Records ...</p>
-      ) : modules.length === 0 ? (
-        <p>No records found ...</p>
-      ) : (
+
 
       <CardContainer>
         {modules.map((module) => (
         <ModuleCard module={module} key={module.ModuleCode}/>
         ))}
       </CardContainer>
+      </>
       )}
     </>
   );

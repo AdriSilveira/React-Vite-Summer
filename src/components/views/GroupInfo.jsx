@@ -11,7 +11,7 @@ function GroupInfo({ selectedGroupID }) {
   };
   const SelectedGroup = selectedGroupID;
   const apiURL = "http://softwarehub.uk/unibase/api";
-  const myGroupEndpoint = `${apiURL}/users/groups/${SelectedGroup}`;
+  const myGroupEndpoint = `${apiURL}users/groups/${SelectedGroup}`;
 
   // State ---------------------------------------
   const [GroupStudents, setGroupStudents] = useState(null);
@@ -31,6 +31,7 @@ function GroupInfo({ selectedGroupID }) {
   const selectGroup = () => {
     setIsGroupView(true);
   };
+
   // View --------------------------------------
   return (
     <>
@@ -48,22 +49,24 @@ function GroupInfo({ selectedGroupID }) {
               {GroupStudents.map((students) => {
                 return (
                   <div className="moduleCard" key={students.UserID}>
-                    <Card>
-                      <div className="moduleImage">
-                        <img src={students.UserImageURL} />
-                      </div>
-                      <div className="moduleCardItems">
-                        <h3>{students.UserFirstname}</h3>
-                        <h4>{students.UserLastname}</h4>
-                      </div>
 
-                      {/* <div className="actions">
-                        <button></button>
-                        <button>Groups</button>
-                        <button></button>
-                      </div> */}
-                    </Card>
-                  </div>
+                      <Card>
+                        <div className="moduleImage">
+                          <img src={students.UserImageURL} />
+                        </div>
+                        <div className="moduleCardItems">
+                          <h3>{students.UserFirstname}</h3>
+                          <h4>{students.UserLastname}</h4>
+                        </div>
+
+                        {/*<div className="actions">
+                          <button></button>
+                          <button>Groups</button>
+                          <button></button>
+                </div>*/}
+                      </Card>
+                    </div>
+
                 );
               })}
             </CardContainer>

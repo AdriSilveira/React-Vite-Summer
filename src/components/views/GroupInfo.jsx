@@ -11,7 +11,7 @@ function GroupInfo({ selectedGroupID }) {
   };
   const SelectedGroup = selectedGroupID;
   const apiURL = "http://softwarehub.uk/unibase/api";
-  const myGroupEndpoint = `${apiURL}users/groups/${SelectedGroup}`;
+  const myGroupEndpoint = `${apiURL}/users/groups/${SelectedGroup}`;
 
   // State ---------------------------------------
   const [GroupStudents, setGroupStudents] = useState(null);

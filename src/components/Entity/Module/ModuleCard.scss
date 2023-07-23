@@ -1,0 +1,65 @@
+@import "../../../global.scss";
+
+.pageTitle {
+  font-size: 28px;
+  font-weight: 400;
+  padding: 20px;
+  border-bottom: 2px solid $lightGray;
+}
+
+.moduleCard {
+  display: flex;
+  align-items: self-start;
+  width: 250px;
+  height: 280px;
+  transition: all 1s ease;
+
+
+  .moduleCardItems {
+    padding: 5px ;
+
+    h3 {
+      color: $black;
+      font-size: 16px;
+      font-weight: 500;
+      padding: 6px 3px 0px 6px;
+    }
+    h4 {
+      color: $gray;
+      font-size: 14px;
+      font-weight: 400;
+      margin-top: 0px;
+      padding: 6px 3px 0px 6px;
+
+    }
+  }
+
+  .actions {
+    position: absolute;
+    bottom: 15px;
+    left: 0;
+    display: flex;
+    justify-content: space-between;
+    align-content: center;
+    width: 100%;
+    padding: 0px 20px;
+
+    button {
+      height: 30px;
+      width: 60px;
+      border-radius: 5px;
+      cursor: pointer;
+      color: $white;
+      border: none;
+      background-color: #00A387;
+      ;
+      padding: 0px 8px;
+      margin: 0px 0px;
+      align-items: center;
+    }
+  }
+  &:hover {
+    transform: scale(1.1);
+    //transition: all 1s ease;
+  }
+}

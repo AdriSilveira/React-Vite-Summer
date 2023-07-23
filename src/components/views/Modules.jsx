@@ -1,21 +1,75 @@
-import { Link } from "react-router-dom";
 import { useState, useEffect } from "react";
+import Action from "../UI/Actions.jsx";
+import ModuleForm from "../Entity/Module/ModuleForm.jsx";
 import { CardContainer, Card } from "../UI/Card.jsx";
-import ListOfModules from "../data/ListOfModules.js";
+import ModuleCard from "../Entity/Module/ModuleCard.jsx";
 import "./Modules.scss";
 
-function Modules({ setIsModulesView }) {
+function Modules() {
   // Initialisation --------------------------------------
-  //adding a button
-  const RoundButton = () => {
-    return <button classname="actions"></button>;
-  };
-  // const loggedInUser = 276;
-  const apiURL = "http://softwarehub.uk/unibase/api";
-  const myGroupEndpoint = `${apiURL}/modules/users/276`;
 
-  // State ---------------------------------------
+  /*const modulelist = [
+    {
+      ModuleID: 1,
+      ModuleName: "Programming 1",
+      ModuleCode: "CI4105",
+      ModuleLevel: 4,
+      ModuleYearID: 1,
+      ModuleLeaderID: 824,
+      ModuleImageURL:
+        "https://images.freeimages.com/images/small-previews/9b8/electronic-components-2-1242738.jpg",
+      ModuleLeaderName: "Paul Knave",
+      ModuleYearName: "2022-23",
+    },
+    {
+      ModuleID: 2,
+      ModuleName: "Computing Fundamentals",
+      ModuleCode: "CI4250",
+      ModuleLevel: 4,
+      ModuleYearID: 1,
+      ModuleLeaderID: 820,
+      ModuleImageURL:
+        "https://images.freeimages.com/images/small-previews/411/light-of-technology-1510575.jpg",
+      ModuleLeaderName: "Graeme Jones",
+      ModuleYearName: "2022-23",
+    },
+    {
+      ModuleID: 3,
+      ModuleName: "Requirements Analysis and Design",
+      ModuleCode: "CI4305",
+      ModuleLevel: 4,
+      ModuleYearID: 1,
+      ModuleLeaderID: 820,
+      ModuleImageURL:
+        "https://images.freeimages.com/images/small-previews/64b/vla-1-1315506.jpg",
+      ModuleLeaderName: "Graeme Jones",
+      ModuleYearName: "2022-23",
+    },
+    {
+      ModuleID: 4,
+      ModuleName: "Professional Environments 1",
+      ModuleCode: "CI4450",
+      ModuleLevel: 4,
+      ModuleYearID: 1,
+      ModuleLeaderID: 820,
+      ModuleImageURL:
+        "https://images.freeimages.com/images/small-previews/293/cable-4-1243085.jpg",
+      ModuleLeaderName: "Graeme Jones",
+      ModuleYearName: "2022-23",
+    },
+  ];*/
+  // Adding a button
+  const RoundButton = () => {
+    return <button className="buttonActions"></button>;
+  };
+
+  // const loggedInUserGroup = 820;
+  const apiURL = 'http://softwarehub.uk/unibase/api';
+  const myModulesEndpoint = `${apiURL}/modules`;
+
+  // State -----------------------------------------------
   const [modules, setModules] = useState(null);
+  const [showForm, setShowForm] = useState(false);
 
   const apiGet = async (endpoint) => {
     const response = await fetch(endpoint);
@@ -24,54 +78,48 @@ function Modules({ setIsModulesView }) {
   };
 
   useEffect(() => {
-    apiGet(myGroupEndpoint);
-  }, [myGroupEndpoint]);
+    apiGet(myModulesEndpoint);
+  }, [myModulesEndpoint]);
 
-  // Handlers ------------------------------------
-
-  // View --------------------------------------
-  const selectModule = () => {
-    setIsModulesView(false);
+  // Handlers --------------------------------------------
+  const handleAdd = () => setShowForm(true);
+  const handleCancel = () => setShowForm(false);
+  const handleSuccess = async () => {
+    handleCancel();
+    await apiGet(myModulesEndpoint);
   };
+
+  // View ------------------------------------------------
 
   return (
     <>
-      {!modules ? (
-        <p>Loading records ...</p>
-      ) : modules.length === 0 ? (
-        <p>No records found.</p>
-      ) : (
-        <>
-          <CardContainer>
+      <CardContainer>
+        {
+          <Card>
             <h1>Modules</h1>
-          </CardContainer>
+          </Card>
+        }
+      </CardContainer>
 
-          <CardContainer>
-            {modules.map((module) => {
-              return (
-                <div className="moduleCard" key={module.ModuleCode}>
-                  <div onClick={selectModule}>
-                    <Card>
-                      <div className="moduleImage">
-                        <img src={module.ModuleImageURL} />
-                      </div>
-                      <div className="moduleCardItems">
-                        <h3>{module.ModuleName}</h3>
-                        <h4>{module.ModuleCode}</h4>
-                      </div>
+      {!showForm && (
+        <Action.Tray>
+          <Action.Add showText buttonText="Add New Module" onClick={handleAdd} />
+        </Action.Tray>
+      )}
 
-                      {/* <div className="actions">
-                          <button></button>
-                          <button></button>
-                          <button></button>
-                        </div> */}
-                    </Card>
-                  </div>
-                </div>
-              );
-            })}
-          </CardContainer>
-        </>
+      {showForm && <ModuleForm onCancel={handleCancel} onSuccess={handleSuccess} />}
+
+      {!modules ? (
+        <p>Loading Records ...</p>
+      ) : modules.length === 0 ? (
+        <p>No records found ...</p>
+      ) : (
+
+      <CardContainer>
+        {modules.map((module) => (
+        <ModuleCard module={module} key={module.ModuleCode}/>
+        ))}
+      </CardContainer>
       )}
     </>
   );

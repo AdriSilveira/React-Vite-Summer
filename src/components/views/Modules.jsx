@@ -5,7 +5,7 @@ import { CardContainer, Card } from "../UI/Card.jsx";
 import ModuleCard from "../Entity/Module/ModuleCard.jsx";
 import "./Modules.scss";
 
-function Modules({setIsModulesView}) {
+function Modules({ setIsModulesView }) {
   // Initialisation --------------------------------------
 
   /*const modulelist = [
@@ -63,8 +63,8 @@ function Modules({setIsModulesView}) {
     return <button className="buttonActions"></button>;
   };
 
-   const loggedInUser = 13;
-  const apiURL = 'http://softwarehub.uk/unibase/api';
+  const loggedInUser = 13;
+  const apiURL = "http://softwarehub.uk/unibase/api";
   const myModulesEndpoint = `${apiURL}/modules`;
 
   // State -----------------------------------------------
@@ -101,32 +101,36 @@ function Modules({setIsModulesView}) {
         <p>Loading Records ...</p>
       ) : modules.length === 0 ? (
         <p>No records found ...</p>
-      ) : ( 
-    <>
-      <CardContainer>
-        {
-          <Card>
-            <h1>Modules</h1>
-          </Card>
-        }
-      </CardContainer>
+      ) : (
+        <>
+          <CardContainer>
+            {
+              <Card>
+                <h1>Modules</h1>
+              </Card>
+            }
+          </CardContainer>
 
-      {!showForm && (
-        <Action.Tray>
-          <Action.Add showText buttonText="Add New Module" onClick={handleAdd} />
-        </Action.Tray>
-      )}
+          {!showForm && (
+            <Action.Tray>
+              <Action.Add
+                showText
+                buttonText="Add New Module"
+                onClick={handleAdd}
+              />
+            </Action.Tray>
+          )}
 
-      {showForm && <ModuleForm onCancel={handleCancel} onSuccess={handleSuccess} />}
+          {showForm && (
+            <ModuleForm onCancel={handleCancel} onSuccess={handleSuccess} />
+          )}
 
-
-
-      <CardContainer>
-        {modules.map((module) => (
-        <ModuleCard module={module} key={module.ModuleCode}/>
-        ))}
-      </CardContainer>
-      </>
+          <CardContainer>
+            {modules.map((module) => (
+              <ModuleCard module={module} key={module.ModuleCode} />
+            ))}
+          </CardContainer>
+        </>
       )}
     </>
   );

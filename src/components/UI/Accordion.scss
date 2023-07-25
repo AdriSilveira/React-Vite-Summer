@@ -1,0 +1,50 @@
+$font-family: sans-serif;
+$margin-item: 10px;
+$padding-content: 10px;
+$text-color: #190505;
+$button-size: 20px; // Customize the button size as needed
+$button-background: #00a387; // Customize the button background color
+
+.accordion {
+  .accordion-item {
+    position: relative;
+    margin: $margin-item 150px;
+    background-color: #f7f7f7; // Change this background color as needed
+
+    &.active {
+      .accordion-header::before {
+        content: "-";
+      }
+    }
+
+    .accordion-header {
+      position: relative;
+      padding: $padding-content;
+      color: $text-color;
+      cursor: pointer;
+
+      &::before {
+        content: "+";
+        position: absolute;
+        top: 20%;
+        left: +80px;
+        font-size: 1.5rem;
+        display: inline-block;
+        width: $button-size;
+        height: $button-size;
+        line-height: $button-size;
+        text-align: center;
+        background-color: $button-background;
+        border-radius: 60%;
+        transform: translateY(-50%);
+      }
+    }
+
+    .accordion-content {
+      position: relative;
+      padding: $padding-content;
+      color: $text-color;
+      cursor: pointer;
+    }
+  }
+}

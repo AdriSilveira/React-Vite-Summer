@@ -1,98 +1,73 @@
 import React, { useState, useEffect } from "react";
 import { CardContainer, Card } from "../UI/Card.jsx";
 import "./Groups.scss";
+import API from "../api/API.jsx";
+import Accordion from "../UI/Accordion.jsx";
+import Modules from "./Modules.jsx";
 
 function Groups({ setIsModulesView, setIsGroupView, setSelectedGroupID }) {
-  // State for storing the groups
-  const [groups, setGroups] = useState([]);
+  //Initializing-----------------------------------------------------
+  const endpoint = `/groups`;
 
+  // const apiURL2 = "https://my.api.mockaroo.com";
+  // const endpoint2 = `/users/groups/${groupid}?key=bb6adbc0`;
+
+  //States-----------------------------------------------------------
+  const [groups, setGroups] = useState([]);
+  const [loadingMessage, setLoadingMessage] = useState("Loading Reacords");
   const RoundButton = () => {
-    return <button classname="actions"></button>;
+    return <button className="actions"></button>;
   };
 
-  // Function to handle going back to the Modules view
+  //Handlers---------------------------------------------------------
+  const apiCall = async (endpoint) => {
+    const response = await API.get(endpoint);
+    response.isSuccess
+      ? setGroups(response.result)
+      : setLoadingMessage(response.message);
+  };
+
+  useEffect(() => {
+    apiCall(endpoint);
+  }, [endpoint]);
+
+  //Handle going back to the Modules view
   const selectModule = () => {
     setIsModulesView(true);
   };
 
-  // Funciton to toggle the dropdown of a group
-  const toggleGroupDropdown = (groupId) => {
-    setGroups((prevGroups) => {
-      const updatedGroups = [...prevGroups];
-      const groupIndex = updatedGroups.findIndex(
-        (group) => group.id === groupId
-      );
-      updatedGroups[groupIndex].isOpen = !updatedGroups[groupIndex].isOpen;
-      return updatedGroups;
-    });
-  };
-
-  // Function to fetch the groups (manual for now until endpoints added)
-  const fetchGroups = () => {
-    const fetchedGroups = [
-      {
-        id: 1,
-        name: "Group Name 1",
-        members: ["Student 1", "Student 2", "Student 3"],
-        isOpen: false,
-      },
-      {
-        id: 2,
-        name: "Group Name 2",
-        members: ["Student 4", "Student 5"],
-        isOpen: false,
-      },
-      {
-        id: 3,
-        name: "Group Name 3",
-        members: ["Student 6", "Student 7", "Student 8", "Student 9"],
-        isOpen: false,
-      },
-    ];
-
-    setGroups(fetchedGroups);
-  };
-
-  // Fetch the groups on component mount
-  useEffect(() => {
-    fetchGroups();
-  }, []);
-
-  // View --------------------------------------
   const selectGroup = (groupId) => {
+    setSelectedGroupID(groupId);
     setIsGroupView(false);
     setSelectedGroupID(groupId);
   };
+  // View --------------------------------------
 
   return (
     <>
-      <CardContainer>
-        <h1>Global Groups</h1>
-      </CardContainer>
-      <Card>
-        <CardContainer>
+      <h1>Global Groups</h1>
+
+      {!groups ? (
+        <p>{loadingMessage}</p>
+      ) : groups.length === 0 ? (
+        <p>No groups found</p>
+      ) : (
+        <Accordion>
           {groups.map((group) => (
-            <div className="groupCard" key={group.id}>
-              <div
-                className="groupHeader"
-                onClick={() => toggleGroupDropdown(group.id)}
-              >
-                <h3>{group.name}</h3>
-              </div>
-              {group.isOpen && (
-                <div className="groupDropdown">
-                  {group.members.map((member, index) => (
-                    <p key={index}>{member}</p>
-                  ))}
-                  <div className="actions">
-                    <button onClick={selectGroup(group.id)}>More</button>
-                  </div>
-                </div>
-              )}
-            </div>
+            <Accordion.Item
+              key={group.GroupID}
+              title={`${group.GroupName}`}
+              level={3}
+            >
+              <p>{group.GroupsName}</p>
+              <p>{group.GroupProjectModuleName}</p>
+              <button onClick={() => selectGroup(group.GroupID)}>
+                Select Group
+              </button>
+            </Accordion.Item>
           ))}
-        </CardContainer>
-      </Card>
+        </Accordion>
+      )}
       <div className="button-backModules">
         <button onClick={selectModule}>Back to Modules</button>
       </div>

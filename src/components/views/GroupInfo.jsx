@@ -1,6 +1,7 @@
 import { Link } from "react-router-dom";
 import { useState, useEffect } from "react";
 import { CardContainer, Card } from "../UI/Card.jsx";
+import UserCard from "../Entity/User/UserCard.jsx";
 import "./Modules.scss";
 
 function GroupInfo({ selectedGroupID }) {
@@ -46,29 +47,12 @@ function GroupInfo({ selectedGroupID }) {
           </CardContainer>
           <Card>
             <CardContainer>
-              {GroupStudents.map((students) => {
-                return (
-                  <div className="moduleCard" key={students.UserID}>
-
-                      <Card>
-                        <div className="moduleImage">
-                          <img src={students.UserImageURL} />
-                        </div>
-                        <div className="moduleCardItems">
-                          <h3>{students.UserFirstname}</h3>
-                          <h4>{students.UserLastname}</h4>
-                        </div>
-
-                        {/*<div className="actions">
-                          <button></button>
-                          <button>Groups</button>
-                          <button></button>
-                </div>*/}
-                      </Card>
-                    </div>
-
-                );
-              })}
+              {GroupStudents.map((students) => (
+                <UserCard
+                  user={students}
+                  //key={students.UserID}
+                />
+              ))}
             </CardContainer>
           </Card>
         </>

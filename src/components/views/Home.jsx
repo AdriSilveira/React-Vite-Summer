@@ -6,18 +6,20 @@ import { useState } from "react";
 function Home({ isModules }) {
   // Initialisation --------------------------------------
   const [isModulesView, setIsModulesView] = useState(true);
-  console.log(isModulesView);
+  const [selectedModuleID, setSelectedModuleID] = useState(1);
+
   const [isGroupView, setIsGroupView] = useState(true);
-  console.log(isGroupView);
   const [selectedGroupID, setSelectedGroupID] = useState(1);
-  console.log(selectedGroupID);
 
   // View --------------------------------------
 
   return (
     <>
       {isModulesView ? (
-        <Modules setIsModulesView={setIsModulesView}></Modules>
+        <Modules
+          setIsModulesView={setIsModulesView}
+          setSelectedModuleID={setSelectedModuleID}
+        ></Modules>
       ) : isGroupView ? (
         <Groups
           setIsGroupView={setIsGroupView}

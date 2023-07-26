@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { TitleCardContainer, TitleCard } from "../UI/TitleCard.jsx";
+import { CardContainer, Card } from "../UI/Card.jsx";
 
 function Login({ loginToApp }) {
   // Initiliasation -----------------------------
@@ -26,9 +26,9 @@ function Login({ loginToApp }) {
   // View ------------------------
   return (
     <>
-      <TitleCardContainer>
+      <CardContainer>
         <h1>Login</h1>
-        <TitleCard>
+        <Card>
           <div className="inputContainer">
             <label htmlFor="kNumberInput" className="labelHover">
               Enter your K Number:
@@ -44,8 +44,8 @@ function Login({ loginToApp }) {
               <button type="submit">-Submit-</button>
             </form>
           </div>
-        </TitleCard>
-      </TitleCardContainer>
+        </Card>
+      </CardContainer>
     </>
   );
 }

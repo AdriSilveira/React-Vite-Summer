@@ -4,10 +4,6 @@ import Layout from "./components/layout/Layout.jsx";
 import Login from "./components/views/Login.jsx";
 import Home from "./components/views/Home.jsx";
 import PageNotFound from "./components/views/404.jsx";
-import Programming1Groups from "./components/views/GroupsProgramming.jsx";
-import RequirementAnalisysDesingGroups from "./components/views/RequirementAnalisysDesingGroups.jsx";
-import ProfessionalEnvironmentGroups from "./components/views/ProfessionalEnvironmentGroups.jsx";
-import ComputingFundamentalsGroups from "./components/views/ComputingFundamentalsGroups.jsx";
 import "./App.scss";
 
 function App() {

@@ -5,7 +5,7 @@ import { CardContainer, Card } from "../UI/Card.jsx";
 import ModuleCard from "../Entity/Module/ModuleCard.jsx";
 import "./Modules.scss";
 
-function Modules({ setIsModulesView }) {
+function Modules({ setIsModulesView, setSelectedModuleID }) {
   // Initialisation --------------------------------------
 
   /*const modulelist = [

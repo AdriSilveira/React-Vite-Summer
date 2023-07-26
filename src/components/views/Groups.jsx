@@ -5,7 +5,12 @@ import API from "../api/API.jsx";
 import Accordion from "../UI/Accordion.jsx";
 import Modules from "./Modules.jsx";
 
-function Groups({ setIsModulesView, setIsGroupView, setSelectedGroupID }) {
+function Groups({
+  setIsModulesView,
+  setIsGroupView,
+  setSelectedGroupID,
+  SelectedModuleID,
+}) {
   //Initializing-----------------------------------------------------
   const endpoint = `/groups`;
 
@@ -37,7 +42,6 @@ function Groups({ setIsModulesView, setIsGroupView, setSelectedGroupID }) {
   };
 
   const selectGroup = (groupId) => {
-    setSelectedGroupID(groupId);
     setIsGroupView(false);
     setSelectedGroupID(groupId);
   };

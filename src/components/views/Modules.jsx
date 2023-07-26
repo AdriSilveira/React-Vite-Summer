@@ -127,7 +127,11 @@ function Modules({ setIsModulesView }) {
 
           <CardContainer>
             {modules.map((module) => (
-              <ModuleCard module={module} key={module.ModuleCode} />
+              <ModuleCard
+                module={module}
+                setIsModulesView={setIsModulesView}
+                key={module.ModuleCode}
+              />
             ))}
           </CardContainer>
         </>

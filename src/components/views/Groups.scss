@@ -1,47 +1,52 @@
 @import "../../global.scss";
+
 h1 {
   padding: 30px;
+  margin: 20px;
 }
 
-.groupCard {
+.group-info {
+  flex: 1;
   display: flex;
   flex-direction: column;
-  margin-bottom: 20px;
+  margin-right: 10px;
 }
 
-// .groupHeader {
-//   cursor: pointer;
-//   h3 {
-//     margin: 0;
-//     padding: 10px;
-//     border-radius: 10px;
-//     background-color: #f2f2f2;
-//   }
-// }
+.button-backModules {
+  margin-top: 20px;
 
-// .groupDropdown {
-//   background-color: #f8f8f8;
-//   padding: 10px;
-//   margin-top: 10px;
-//   border-radius: 10px;
+  button {
+    padding: 10px 20px;
+    background-color: #00a387;
+    color: black;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease; /* Add a semicolon here */
 
-//   p {
-//     margin: 0;
-//     padding: 5px;
-//   }
-// }
+    &:hover {
+      background-color: blueviolet;
+    }
+  }
+}
 
-.button-backModules button {
-  padding: 10px 20px;
-  background-color: #00a387;
-  margin: 5px 5px 5px 30px;
-  color: black;
-  border: none;
-  border-radius: 5px;
-  cursor: pointer;
-  transition: background-color 0.3s ease;
+.button-selectGroup {
+  display: flex;
+  justify-content: flex-end;
+  margin-top: 10px;
 
-  &:hover {
-    background-color: blueviolet;
+  button {
+    padding: 10px 20px;
+    background-color: #00a387;
+    margin: 5px 5px 5px 30px;
+    color: black;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease; /* Add a semicolon here */
+
+    &:hover {
+      background-color: blueviolet;
+    }
   }
 }

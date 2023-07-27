@@ -63,11 +63,15 @@ function Groups({
               title={`${group.GroupName}`}
               level={3}
             >
-              <p>{group.GroupsName}</p>
-              <p>{group.GroupProjectModuleName}</p>
-              <button onClick={() => selectGroup(group.GroupID)}>
-                Select Group
-              </button>
+              <div className="group-info">
+                <p>{group.GroupsName}</p>
+                <p>{group.GroupProjectModuleName}</p>
+              </div>
+              <div className="button-selectGroup">
+                <button onClick={() => selectGroup(group.GroupID)}>
+                  Select Group
+                </button>
+              </div>
             </Accordion.Item>
           ))}
         </Accordion>

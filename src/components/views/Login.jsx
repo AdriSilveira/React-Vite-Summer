@@ -28,23 +28,22 @@ function Login({ loginToApp }) {
     <>
       <CardContainer>
         <h1>Login</h1>
-        <Card>
-          <div className="inputContainer">
-            <label htmlFor="kNumberInput" className="labelHover">
-              Enter your K Number:
-            </label>
-            <form onSubmit={handleSubmit}>
-              <input
-                type="text"
-                id="kNumberInput"
-                placeholder="Enter your K number"
-                value={kNumber}
-                onChange={handleInputChange}
-              />
-              <button type="submit">-Submit-</button>
-            </form>
-          </div>
-        </Card>
+
+        <div className="inputContainer">
+          <label htmlFor="kNumberInput" className="labelHover">
+            Enter your K Number:
+          </label>
+          <form onSubmit={handleSubmit}>
+            <input
+              type="text"
+              id="kNumberInput"
+              placeholder="Enter your K number"
+              value={kNumber}
+              onChange={handleInputChange}
+            />
+            <button type="submit">-Submit-</button>
+          </form>
+        </div>
       </CardContainer>
     </>
   );

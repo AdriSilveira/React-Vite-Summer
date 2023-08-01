@@ -33,6 +33,7 @@ function ModuleForm({ onCancel, onSuccess }) {
       ModuleImageURL: (value) => (value === null ? "" : value),
     },
   };
+  /*
   const apiURL = "http://softwarehub.uk/unibase/api";
   const yearsEndpoint = `${apiURL}/years`;
   const staffEndpoint = `${apiURL}/users/staff`;
@@ -85,6 +86,7 @@ function ModuleForm({ onCancel, onSuccess }) {
     if (result.isSuccess) onSuccess();
     else alert(result.message);
   };
+  */
 
   // View ----------------------------------------
   return (
@@ -95,7 +97,7 @@ function ModuleForm({ onCancel, onSuccess }) {
           <input
             type="date"
             name="LogDate"
-            value={conformance.js2html["LogDate"](Log.LogDate)}
+            //value={conformance.js2html["LogDate"](Log.LogDate)}
             onChange={handleChange}
           />
         </label>
@@ -105,45 +107,9 @@ function ModuleForm({ onCancel, onSuccess }) {
           <input
             type="text"
             name="ModuleCode"
-            value={conformance.js2html["ModuleCode"](module.ModuleCode)}
+            //value={conformance.js2html["ModuleCode"](module.ModuleCode)}
             onChange={handleChange}
           />
-        </label>
-
-        <label>
-          Module Level
-          <select
-            name="ModuleLevel"
-            value={conformance.js2html["ModuleLevel"](module.ModuleLevel)}
-            onChange={handleChange}
-          >
-            <option value="0" disabled>
-              None selected
-            </option>
-            {[3, 4, 5, 6, 7].map((level) => (
-              <option key={level}>{level}</option>
-            ))}
-          </select>
-        </label>
-
-        <label>
-          Module Year
-          {!years ? (
-            <p>Loading records ...</p>
-          ) : (
-            <select
-              name="ModuleYearID"
-              value={conformance.js2html["ModuleYearID"](module.ModuleYearID)}
-              onChange={handleChange}
-            >
-              <option value="0">None selected</option>
-              {years.map((year) => (
-                <option key={year.YearID} value={year.YearID}>
-                  {year.YearName}
-                </option>
-              ))}
-            </select>
-          )}
         </label>
 
         <label>

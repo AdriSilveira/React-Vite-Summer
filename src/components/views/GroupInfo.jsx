@@ -2,6 +2,7 @@ import { Link } from "react-router-dom";
 import { useState, useEffect } from "react";
 import { CardContainer, Card } from "../UI/Card.jsx";
 import UserCard from "../Entity/User/UserCard.jsx";
+import LogForm from "../Entity/Logs/LogForm.jsx";
 import "./Modules.scss";
 
 function GroupInfo({ selectedGroupID }) {
@@ -55,6 +56,9 @@ function GroupInfo({ selectedGroupID }) {
               ))}
             </CardContainer>
           </Card>
+          <CardContainer>
+            <LogForm onCancel={handleCancel} onSuccess={handleSuccess} />
+          </CardContainer>
         </>
       )}
     </>

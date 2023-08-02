@@ -7,20 +7,28 @@ import PageNotFound from "./components/views/404.jsx";
 import "./App.scss";
 
 function App() {
-  const [userKnumber, setData] = useState("");
+  const [LoggedinUser, setLoginUser] = useState([]);
 
   const loginToApp = (loginKnumber) => {
-    setData(loginKnumber);
+    setLoginUser(loginKnumber);
     //window.location = "/modules";
   };
 
   // View ----------------------------------------
   return (
     <BrowserRouter>
-      <Layout loggedInUser={userKnumber}>
+      <Layout loggedInUser={LoggedinUser.UserEmail}>
         <Routes>
-          <Route path="/" element={<Login />} />
-          <Route path="/home" element={<Home isModules={(true, true)} />} />
+          <Route path="/" element={<Login loginToApp={loginToApp} />} />
+          <Route
+            path="/home"
+            element={
+              <Home
+                isModules={(true, true)}
+                loggedInUserId={LoggedinUser.UserID}
+              />
+            }
+          />
           <Route path="/login" element={<Login loginToApp={loginToApp} />} />
           <Route path="/*" element={<PageNotFound />} />
         </Routes>

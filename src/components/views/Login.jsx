@@ -7,16 +7,10 @@ function Login({ loginToApp }) {
 
   // Initialise with an empty String
   const [kNumber, setKNumber] = useState(""); // Returns the current state value and a function to update the state
-  // kNumber stores the state variable
-  // setKNumber updates the state value
-  // '' is the initial value of the variable
-
-  const [email, setEmail] = useState("");
 
   const endpoint = `/users?UserEmail=${kNumber}`;
 
   //States-----------------------------------------------------------
-  const [user, setUser] = useState([]);
   const [loadingMessage, setLoadingMessage] = useState("Loading Reacords");
   const RoundButton = () => {
     return <button className="actions"></button>;
@@ -30,16 +24,6 @@ function Login({ loginToApp }) {
     response.isSuccess
       ? loginToApp(response.result)
       : setLoadingMessage(response.message);
-  };
-
-  //Handle going back to the Modules view
-  const selectModule = () => {
-    setIsModulesView(true);
-  };
-
-  const selectGroup = (groupId) => {
-    setIsGroupView(false);
-    setSelectedGroupID(groupId);
   };
 
   const handleInputChange = (event) => {

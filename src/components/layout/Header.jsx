@@ -15,7 +15,7 @@ function Header(props) {
           <img src="https://i.postimg.cc/fTns4XzT/Logo.png" alt="logo" />
         </NavLink>
       </div>
-      <div class="login">
+      <div className="login">
         <a href="#">
           Welcome <span>{props.loggedInUser}</span>
         </a>

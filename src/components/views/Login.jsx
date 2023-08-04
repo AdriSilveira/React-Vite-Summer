@@ -11,9 +11,9 @@ function Login({ loginToApp }) {
   // setKNumber updates the state value
   // '' is the initial value of the variable
 
-  const [email, setEmail] = useState("Ku06696@kingston.ac.uk");
+  const [email, setEmail] = useState("");
 
-  const endpoint = `/users?UserEmail=${email}`;
+  const endpoint = `/users?UserEmail=${kNumber}`;
 
   //States-----------------------------------------------------------
   const [user, setUser] = useState([]);
@@ -25,16 +25,12 @@ function Login({ loginToApp }) {
   // Handlers -----------------------------------
 
   const apiCall = async (endpoint) => {
+    console.log(endpoint);
     const response = await API.get(endpoint);
     response.isSuccess
-      ? setUser(response.result)
+      ? loginToApp(response.result)
       : setLoadingMessage(response.message);
   };
-  console.log(user);
-
-  useEffect(() => {
-    apiCall(endpoint);
-  }, [endpoint]);
 
   //Handle going back to the Modules view
   const selectModule = () => {
@@ -53,8 +49,7 @@ function Login({ loginToApp }) {
   // Event handler for form submission
   const handleSubmit = (event) => {
     event.preventDefault(); // Prevents the default form submission
-    setEmail(kNumber);
-    loginToApp(user[0]);
+    apiCall(endpoint);
   };
 
   // View ------------------------
@@ -62,7 +57,8 @@ function Login({ loginToApp }) {
     <>
       <CardContainer>
         <h1>Login</h1>
-
+      </CardContainer>
+      <CardContainer>
         <div className="inputContainer">
           <label htmlFor="kNumberInput" className="labelHover">
             Enter your K Number:
@@ -71,7 +67,7 @@ function Login({ loginToApp }) {
             <input
               type="text"
               id="kNumberInput"
-              placeholder="Enter your K number"
+              placeholder="Enter your Kingston University Email"
               value={kNumber}
               onChange={handleInputChange}
             />

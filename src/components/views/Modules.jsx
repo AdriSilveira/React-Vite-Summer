@@ -14,7 +14,16 @@ function Modules({ setIsModulesView, setSelectedModuleID, loggedInUserId }) {
   };
 
   const apiURL = "http://softwarehub.uk/unibase/api";
-  const myModulesEndpoint = `${apiURL}/modules/users/${loggedInUserId}`;
+  console.log(loggedInUserId);
+  var myModulesEndpoint = `${apiURL}/modules/`;
+
+  if (loggedInUserId != "") {
+    myModulesEndpoint = `${apiURL}/modules/users/${loggedInUserId}`;
+  } else {
+    myModulesEndpoint = `${apiURL}/modules/`;
+  }
+
+  console.log(myModulesEndpoint);
 
   // State -----------------------------------------------
   const [modules, setModules] = useState(null);

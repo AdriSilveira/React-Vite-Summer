@@ -13,6 +13,12 @@ function Groups({
 }) {
   //Initializing-----------------------------------------------------
   const endpoint = `/groups`;
+  console.log(SelectedModuleID);
+
+  const apiURL = "http://softwarehub.uk/unibase/api";
+  const groupsEndpoint = `/groups/${
+    SelectedModuleID != undefined ? `modules/${SelectedModuleID}` : ``
+  }`;
 
   // const apiURL2 = "https://my.api.mockaroo.com";
   // const endpoint2 = `/users/groups/${groupid}?key=bb6adbc0`;
@@ -33,8 +39,9 @@ function Groups({
   };
 
   useEffect(() => {
-    apiCall(endpoint);
-  }, [endpoint]);
+    console.log(groupsEndpoint);
+    apiCall(groupsEndpoint);
+  }, [groupsEndpoint]);
 
   //Handle going back to the Modules view
   const selectModule = () => {

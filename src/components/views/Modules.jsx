@@ -4,6 +4,7 @@ import ModuleForm from "../Entity/Module/ModuleForm.jsx";
 import { CardContainer, Card } from "../UI/Card.jsx";
 import ModuleCard from "../Entity/Module/ModuleCard.jsx";
 import "./Modules.scss";
+import API from "../api/API.jsx";
 
 function Modules({ setIsModulesView, setSelectedModuleID, loggedInUserId }) {
   // Initialisation --------------------------------------
@@ -15,24 +16,23 @@ function Modules({ setIsModulesView, setSelectedModuleID, loggedInUserId }) {
 
   const apiURL = "http://softwarehub.uk/unibase/api";
   console.log(loggedInUserId);
-  const myModulesEndpoint = `${apiURL}/modules/${
+  const myModulesEndpoint = `/modules/${
     loggedInUserId != "" ? `users/${loggedInUserId}` : ``
   }`;
-
-  console.log(myModulesEndpoint);
 
   // State -----------------------------------------------
   const [modules, setModules] = useState(null);
   const [showForm, setShowForm] = useState(false);
 
-  const apiGet = async (endpoint) => {
-    const response = await fetch(endpoint);
-    const result = await response.json();
-    setModules(result);
+  const apiCall = async (endpoint) => {
+    const response = await API.get(endpoint);
+    response.isSuccess
+      ? setModules(response.result)
+      : setLoadingMessage(response.message);
   };
 
   useEffect(() => {
-    apiGet(myModulesEndpoint);
+    apiCall(myModulesEndpoint);
   }, [myModulesEndpoint]);
 
   // Handlers --------------------------------------------
@@ -84,6 +84,7 @@ function Modules({ setIsModulesView, setSelectedModuleID, loggedInUserId }) {
               <ModuleCard
                 module={module}
                 setIsModulesView={setIsModulesView}
+                setSelectedModuleID={setSelectedModuleID}
                 key={module.ModuleCode}
               />
             ))}

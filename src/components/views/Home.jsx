@@ -6,7 +6,7 @@ import { useState } from "react";
 function Home({ isModules, loggedInUserId }) {
   // Initialisation --------------------------------------
   const [isModulesView, setIsModulesView] = useState(true);
-  const [selectedModuleID, setSelectedModuleID] = useState(1);
+  const [selectedModuleID, setSelectedModuleID] = useState("");
 
   const [isGroupView, setIsGroupView] = useState(true);
   const [selectedGroupID, setSelectedGroupID] = useState(1);
@@ -26,6 +26,7 @@ function Home({ isModules, loggedInUserId }) {
           setIsGroupView={setIsGroupView}
           setSelectedGroupID={setSelectedGroupID}
           setIsModulesView={setIsModulesView}
+          selectedModuleID={selectedModuleID}
         ></Groups>
       ) : (
         <GroupInfo selectedGroupID={selectedGroupID}></GroupInfo>

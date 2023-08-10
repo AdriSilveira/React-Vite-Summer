@@ -3,12 +3,14 @@ import { Card } from "../../UI/Card.jsx";
 import { Link } from "react-router-dom";
 import "./ModuleCard.scss";
 
-function ModuleCard({ module, setIsModulesView }) {
+function ModuleCard({ module, setIsModulesView, setSelectedModuleID }) {
   // Initialisation --------------------------------------
   // State -----------------------------------------------
   // Handlers --------------------------------------------
-  const selectModule = () => {
+  const selectModule = (moduleId) => {
     setIsModulesView(false);
+    setSelectedModuleID(moduleId);
+    console.log(moduleId);
   };
 
   // View ------------------------------------------------
@@ -25,7 +27,9 @@ function ModuleCard({ module, setIsModulesView }) {
 
         <div className="actions">
           {/*<Link to ="/groups">*/}
-          <button onClick={selectModule}>Groups</button>
+          <button onClick={() => selectModule(module.ModuleCode)}>
+            Groups
+          </button>
           {/*</div>/</Link>*/}
         </div>
       </Card>

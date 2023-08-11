@@ -11,6 +11,7 @@ function GroupInfo({ selectedGroupID }) {
   const RoundButton = () => {
     return <button classname="actions"></button>;
   };
+  console.log(selectedGroupID);
   const SelectedGroup = selectedGroupID;
   const apiURL = "http://softwarehub.uk/unibase/api";
   const myGroupEndpoint = `${apiURL}/users/groups/${SelectedGroup}`;
@@ -56,9 +57,7 @@ function GroupInfo({ selectedGroupID }) {
               ))}
             </CardContainer>
           </Card>
-          <CardContainer>
-            <LogForm onCancel={handleCancel} onSuccess={handleSuccess} />
-          </CardContainer>
+          <CardContainer></CardContainer>
         </>
       )}
     </>

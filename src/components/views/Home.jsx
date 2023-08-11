@@ -6,7 +6,7 @@ import { useState } from "react";
 function Home({ isModules, loggedInUserId }) {
   // Initialisation --------------------------------------
   const [isModulesView, setIsModulesView] = useState(true);
-  const [selectedModuleID, setSelectedModuleID] = useState("");
+  const [selectedModuleID, setSelectedModuleID] = useState(""); //change to module id not code
 
   const [isGroupView, setIsGroupView] = useState(true);
   const [selectedGroupID, setSelectedGroupID] = useState(1);

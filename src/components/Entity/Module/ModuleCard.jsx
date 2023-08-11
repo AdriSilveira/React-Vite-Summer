@@ -27,9 +27,7 @@ function ModuleCard({ module, setIsModulesView, setSelectedModuleID }) {
 
         <div className="actions">
           {/*<Link to ="/groups">*/}
-          <button onClick={() => selectModule(module.ModuleCode)}>
-            Groups
-          </button>
+          <button onClick={() => selectModule(module.ModuleID)}>Groups</button>
           {/*</div>/</Link>*/}
         </div>
       </Card>

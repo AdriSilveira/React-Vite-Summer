@@ -24,7 +24,7 @@ function Groups({
   //States-----------------------------------------------------------
   const [groups, setGroups] = useState([]);
   const [tempGroups, setTempGroups] = useState([]);
-  const [assessments, setAssessments] = useState([]);
+  const [assessments, setAssessments] = useState([""]);
   const [count, setCount] = useState(0);
   const [loadingMessage, setLoadingMessage] = useState("Loading Records");
   const RoundButton = () => {
@@ -37,10 +37,10 @@ function Groups({
     if (response.isSuccess) {
       setTempGroups(response.result);
       //setGroups(tempGroups.concat(groups));
-      // console.log("temp ");
-      // console.log(tempGroups);
+      console.log("temp ");
+      //console.log(tempGroups);
       // console.log("final ");
-      // console.log(groups);
+      //console.log(groups);
     }
   };
 
@@ -48,8 +48,8 @@ function Groups({
     const response = await API.get(endpoint);
     if (response.isSuccess) {
       setAssessments(response.result);
-      console.log("ass");
-      console.log(assessments);
+      //console.log("ass");
+      //console.log(assessments);
       // assessments.forEach((assessment) => {
       //   apiCallGroups(assessment);
       //setGroups(tempGroups + Groups);
@@ -61,13 +61,26 @@ function Groups({
   };
 
   useEffect(() => {
-    apiCallAss(assEndpoint);
-    assessments.forEach((assessment) => {
-      apiCallGroups(assessments[count], groupsEndpoint);
-      setGroups(tempGroups.concat(groups));
-      setCount((c) => c + 1);
-    });
-  }, [assEndpoint, groupsEndpoint]);
+    console.log(assessments[0]);
+    if (assessments[0] == "") {
+      apiCallAss(assEndpoint);
+      //console.log("check");
+    } else {
+      console.log("loop start");
+      console.log(assessments);
+      assessments.forEach((assessment) => {
+        apiCallGroups(assessment, groupsEndpoint);
+        setGroups((g) => g.concat(tempGroups));
+        console.log("group loop");
+        console.log(groups);
+        console.log(tempGroups);
+        //setCount((c) => c + 1);
+      });
+      console.log("end loop");
+      console.log(groups);
+      console.log(tempGroups);
+    }
+  }, [assEndpoint, groupsEndpoint, assessments]);
 
   //Handle going back to the Modules view
   const selectModule = () => {

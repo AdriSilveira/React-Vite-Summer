@@ -23,10 +23,8 @@ function Groups({
 
   //States-----------------------------------------------------------
   const [groups, setGroups] = useState([]);
-  //const [tempGroups, setTempGroups] = useState([]);
-  //const [assessments, setAssessments] = useState([""]);
-  const [count, setCount] = useState(0);
   const [loadingMessage, setLoadingMessage] = useState("Loading Records");
+
   const RoundButton = () => {
     return <button className="actions"></button>;
   };
@@ -36,28 +34,14 @@ function Groups({
     const response = await API.get(endpoint.concat(assessment.AssessmentID));
     if (response.isSuccess) {
       return response.result;
-      //setGroups(tempGroups.concat(groups));
-      //console.log("temp ");
-      //console.log(tempGroups);
-      // console.log("final ");
-      //console.log(groups);
-    }
+    } else setLoadingMessage("No groups found");
   };
 
   const apiCallAss = async (endpoint) => {
     const response = await API.get(endpoint);
     if (response.isSuccess) {
       return response.result;
-      //console.log("ass");
-      //console.log(assessments);
-      // assessments.forEach((assessment) => {
-      //   apiCallGroups(assessment);
-      //setGroups(tempGroups + Groups);
-      // });
-    } else setLoadingMessage("test 123");
-    // response.isSuccess
-    //   ? setAssessments(response.result)
-    //   : setLoadingMessage(response.message);
+    } else setLoadingMessage("No assessments found");
   };
 
   const getGroups = async () => {
@@ -73,25 +57,6 @@ function Groups({
   };
 
   useEffect(() => {
-    // console.log(assessments[0]);
-    // if (assessments[0] == "") {
-    //   apiCallAss(assEndpoint);
-    //   //console.log("check");
-    // } else {
-    //   console.log("loop start");
-    //   console.log(assessments);
-    //   assessments.forEach((assessment) => {
-    //     apiCallGroups(assessment, groupsEndpoint);
-    //     setGroups((g) => g.concat(tempGroups));
-    //     console.log("group loop");
-    //     console.log(groups);
-    //     console.log(tempGroups);
-    //     //setCount((c) => c + 1);
-    //   });
-    //   console.log("end loop");
-    //   console.log(groups);
-    //   console.log(tempGroups);
-    // }
     getGroups();
   }, []);
 

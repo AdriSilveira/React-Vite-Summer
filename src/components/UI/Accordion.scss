@@ -7,10 +7,15 @@ $button-background: #00a387; // Customize the button background color
 
 .accordion {
   .accordion-item {
+    border: 1px solid lightgray;
+    border-radius: 5px;
+    box-shadow: 4px 4px 8px 4px rgba(70, 70, 70, 0.3);
     position: relative;
-    margin: $margin-item 150px;
-    background-color: #f7f7f7; // Change this background color as needed
-
+    margin-top: $margin-item;
+    background-color: #ffffff; // Change this background color as needed
+    &:hover {
+      transform: scale(1.1);
+    }
     &.active {
       .accordion-header::before {
         content: "-";
@@ -19,6 +24,8 @@ $button-background: #00a387; // Customize the button background color
 
     .accordion-header {
       position: relative;
+      text-align: start;
+      width: 100%;
       padding: $padding-content;
       color: $text-color;
       cursor: pointer;
@@ -26,7 +33,7 @@ $button-background: #00a387; // Customize the button background color
       &::before {
         content: "+";
         position: absolute;
-        top: 20%;
+        //top: 20%;
         left: +80px;
         font-size: 1.5rem;
         display: inline-block;
@@ -37,6 +44,9 @@ $button-background: #00a387; // Customize the button background color
         background-color: $button-background;
         border-radius: 60%;
         transform: translateY(-50%);
+      }
+      &::after {
+        content: "-";
       }
     }
 

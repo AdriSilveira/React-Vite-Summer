@@ -65,7 +65,7 @@ function Modules({ setIsModulesView, setSelectedModuleID, loggedInUserId }) {
             }
           </CardContainer>
 
-          {!showForm && (
+          {/*!showForm && (
             <Action.Tray>
               <Action.Add
                 showText
@@ -73,7 +73,7 @@ function Modules({ setIsModulesView, setSelectedModuleID, loggedInUserId }) {
                 onClick={handleAdd}
               />
             </Action.Tray>
-          )}
+          )*/}
 
           {showForm && (
             <ModuleForm onCancel={handleCancel} onSuccess={handleSuccess} />

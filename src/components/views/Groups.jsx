@@ -23,8 +23,8 @@ function Groups({
 
   //States-----------------------------------------------------------
   const [groups, setGroups] = useState([]);
-  const [tempGroups, setTempGroups] = useState([]);
-  const [assessments, setAssessments] = useState([""]);
+  //const [tempGroups, setTempGroups] = useState([]);
+  //const [assessments, setAssessments] = useState([""]);
   const [count, setCount] = useState(0);
   const [loadingMessage, setLoadingMessage] = useState("Loading Records");
   const RoundButton = () => {
@@ -35,9 +35,9 @@ function Groups({
   const apiCallGroups = async (assessment, endpoint) => {
     const response = await API.get(endpoint.concat(assessment.AssessmentID));
     if (response.isSuccess) {
-      setTempGroups(response.result);
+      return response.result;
       //setGroups(tempGroups.concat(groups));
-      console.log("temp ");
+      //console.log("temp ");
       //console.log(tempGroups);
       // console.log("final ");
       //console.log(groups);
@@ -47,7 +47,7 @@ function Groups({
   const apiCallAss = async (endpoint) => {
     const response = await API.get(endpoint);
     if (response.isSuccess) {
-      setAssessments(response.result);
+      return response.result;
       //console.log("ass");
       //console.log(assessments);
       // assessments.forEach((assessment) => {
@@ -60,27 +60,40 @@ function Groups({
     //   : setLoadingMessage(response.message);
   };
 
-  useEffect(() => {
-    console.log(assessments[0]);
-    if (assessments[0] == "") {
-      apiCallAss(assEndpoint);
-      //console.log("check");
-    } else {
-      console.log("loop start");
-      console.log(assessments);
-      assessments.forEach((assessment) => {
-        apiCallGroups(assessment, groupsEndpoint);
-        setGroups((g) => g.concat(tempGroups));
-        console.log("group loop");
-        console.log(groups);
-        console.log(tempGroups);
-        //setCount((c) => c + 1);
-      });
-      console.log("end loop");
-      console.log(groups);
+  const getGroups = async () => {
+    const assessments = await apiCallAss(assEndpoint);
+    for (const assessment of assessments) {
+      const tempGroups = await apiCallGroups(assessment, groupsEndpoint);
+      console.log(assessment);
       console.log(tempGroups);
+      if (tempGroups != undefined) {
+        setGroups(groups.concat(tempGroups));
+      }
     }
-  }, [assEndpoint, groupsEndpoint, assessments]);
+  };
+
+  useEffect(() => {
+    // console.log(assessments[0]);
+    // if (assessments[0] == "") {
+    //   apiCallAss(assEndpoint);
+    //   //console.log("check");
+    // } else {
+    //   console.log("loop start");
+    //   console.log(assessments);
+    //   assessments.forEach((assessment) => {
+    //     apiCallGroups(assessment, groupsEndpoint);
+    //     setGroups((g) => g.concat(tempGroups));
+    //     console.log("group loop");
+    //     console.log(groups);
+    //     console.log(tempGroups);
+    //     //setCount((c) => c + 1);
+    //   });
+    //   console.log("end loop");
+    //   console.log(groups);
+    //   console.log(tempGroups);
+    // }
+    getGroups();
+  }, []);
 
   //Handle going back to the Modules view
   const selectModule = () => {

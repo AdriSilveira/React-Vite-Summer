@@ -2,7 +2,7 @@
 
 header {
   padding: 0px 100px;
-  background:$green;
+  background: $green;
   font-size: 10px;
   height: 90px;
   display: flex;
@@ -12,13 +12,13 @@ header {
   .logo img {
     height: 60px;
   }
-  .login a {
+  .user {
     text-decoration: none;
     color: $white;
     font-weight: bold;
     font-size: 14px;
   }
   span {
-    color:$black;
+    color: $black;
   }
 }

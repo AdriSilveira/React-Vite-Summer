@@ -16,9 +16,13 @@ function Header(props) {
         </NavLink>
       </div>
       <div className="login">
-        <a href="#">
-          Welcome <span>{props.loggedInUser}</span>
-        </a>
+        {props.loggedInUser != "" ? (
+          <div className="user">
+            <span>{props.loggedInUser}</span>
+          </div>
+        ) : (
+          <div className="user"></div>
+        )}
       </div>
     </header>
   );

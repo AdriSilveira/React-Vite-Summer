@@ -1,0 +1,21 @@
+@import "../../global.scss";
+
+.button-CoLo button {
+    display: flex;
+    justify-content: flex-end;
+    margin-top: 10px;
+  
+      padding: 10px 20px;
+      background-color: #00a387;
+      margin: 5px 5px 5px 30px;
+      color: black;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+      transition: background-color 0.3s ease; 
+}
+  
+.button-CoLo button:hover {
+        background-color: blueviolet;
+      }
+

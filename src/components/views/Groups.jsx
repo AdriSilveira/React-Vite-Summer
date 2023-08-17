@@ -14,7 +14,7 @@ function Groups({
   //Initializing-----------------------------------------------------
   const endpoint = `/groups`;
   const selectedModule = selectedModuleID;
-  
+
   const assEndpoint = `/assessments/module/${selectedModule}`;
   const groupsEndpoint = `/groups/assessment/`;
 
@@ -24,7 +24,7 @@ function Groups({
   //States-----------------------------------------------------------
   const [groups, setGroups] = useState([]);
   const [loadingMessage, setLoadingMessage] = useState("Loading Records");
-  
+
   const RoundButton = () => {
     return <button className="actions"></button>;
   };
@@ -73,7 +73,7 @@ function Groups({
 
   return (
     <>
-      <h1>Global Groups</h1>
+      <h1>Groups</h1>
 
       {!groups ? (
         <p>{loadingMessage}</p>

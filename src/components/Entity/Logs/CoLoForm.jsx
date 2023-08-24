@@ -8,9 +8,16 @@ const initialLog = {
   //ModuleCode: 'XY0000',
   //ModuleLevel: 3,
   //ModuleYearID: null,
-    Attendance: 'Not Present',
-    HomeworkCompleted: 'Not Completed',
-    TasksForNextWeek: '',
+  //  LogName: '',
+  //  LogGroupID: null,
+  //  LogSubmissionDate: new Date().toISOString(),
+  ContributionLogName: '',
+  ContributionLogUserName: '',
+  ContributionLogGroupName:'',
+  ContributionLogGroupID: null,
+  ContributionAttendance: '',
+  ContributionCompletion: '',
+  ContributionFutureTasks: '',
   //ModuleImageURL:
    // 'https://images.freeimages.com/images/small-previews/9b8/electronic-components-2-1242738.jpg',
 };
@@ -23,19 +30,25 @@ function CoLoForm({ onCancel, onSuccess }) {
      // ModuleCode: (value) => (value === '' ? null : value),
      // ModuleLevel: (value) => parseInt(value),
      // ModuleYearID: (value) => (value == 0 ? null : parseInt(value)),
-      Attendance: (value) => (value === '' ? null : value),
-      HomeworkCompleted: (value) => (value === '' ? null : value),
-      TasksForNextWeek: (value) => (value === '' ? '  ' : value),
-    //  ModuleImageURL: (value) => (value === '' ? null : value),
+     ContributionLogName: (value) => (value === '' ? ' ' : value),
+     ContributionLogUserName: (value) => (value === '' ? ' ' : value),
+     ContributionLogGroupName: (value) => (value === '' ? ' ' : value),
+     ContributionAttendance: (value) => (value === '' ? null : value),
+     ContributionCompletion: (value) => (value === '' ? null : value),
+     ContributionFutureTasks: (value) => (value === '' ? '  ' : value),
+     // ModuleImageURL: (value) => (value === '' ? null : value),
     },
     js2html: {
      // ModuleName: (value) => (value === null ? '' : value),
      // ModuleCode: (value) => (value === null ? '' : value),
      // ModuleLevel: (value) => value,
      // ModuleYearID: (value) => (value === null ? 0 : value),
-      Attendance: (value) => (value === '' ? null : value),
-      HomeworkCompleted: (value) => (value === '' ? null : value),
-      TasksForNextWeek: (value) => (value === '' ? '' : value),
+     ContributionLogName: (value) => (value === '' ? ' ' : value),
+     ContributionLogUserName: (value) => (value === '' ? ' ' : value),
+     ContributionLogGroupName: (value) => (value === '' ? ' ' : value),
+     ContributionAttendance: (value) => (value === '' ? null : value),
+     ContributionCompletion: (value) => (value === '' ? null : value),
+     ContributionFutureTasks: (value) => (value === '' ? '' : value),
      // ModuleImageURL: (value) => (value === null ? '' : value),
     },
   };
@@ -43,12 +56,19 @@ function CoLoForm({ onCancel, onSuccess }) {
  // const yearsEndpoint = `${apiURL}/years`;
   //const staffEndpoint = `${apiURL}/users/staff`;
   //const postModuleEndpoint = `${apiURL}/modules`;
-  const postLogEndpoint = `${apiURL}/contributionlogs`;
+  const postLogEndpointExample = `${apiURL}/contributionlogs`;
+  const postLogEndpointGraeme = `${apiURL}/logs/1`;
+  const attendanceEndpoint = `${apiURL}/attendance`;
+  const completionEndpoint = `${apiURL}/completion`;
+  const contributionsEndpoint =`${apiURL}/contributions/1`;
 
   // State ---------------------------------------
   const [log, setLog] = useState(initialLog);
- // const [years, setYears] = useState(null);
+  //const [years, setYears] = useState(null);
   //const [staff, setStaff] = useState(null);
+  const [attendanceOptions, setAttendanceOptions] = useState([]);
+  const [completionOptions, setCompletionOptions] = useState([]);
+  const [contribution, setContribution] = useState([initialLog]);
 
   const apiGet = async (endpoint, setState) => {
     const response = await fetch(endpoint);
@@ -80,6 +100,18 @@ function CoLoForm({ onCancel, onSuccess }) {
     apiGet(staffEndpoint, setStaff);
   }, [staffEndpoint]);*/
 
+  useEffect(() => {
+    apiGet(attendanceEndpoint, setAttendanceOptions);
+  }, [attendanceEndpoint]);
+
+  useEffect(() => {
+    apiGet(completionEndpoint, setCompletionOptions);
+  }, [completionEndpoint]);
+
+  useEffect(() => {
+    apiGet(contributionsEndpoint, setContribution);
+  }, [contributionsEndpoint]); 
+
   // Handlers ------------------------------------
   const handleChange = (event) => {
     const { name, value } = event.target;
@@ -88,7 +120,7 @@ function CoLoForm({ onCancel, onSuccess }) {
 
   const handleSubmit = async () => {
     console.log(`Log=[${JSON.stringify(log)}]`);
-    const result = await apiPost(postLogEndpoint, log);
+    const result = await apiPost(contributionsEndpoint, log);
     if (result.isSuccess) onSuccess();
     else alert(result.message);
   };
@@ -98,39 +130,92 @@ function CoLoForm({ onCancel, onSuccess }) {
     <div className="CoLoForm">
       <div className="FormTray">
 
-        <label className="formLabel">
-          Attendance:
+      <label className="formLabel">
+          Contribution Log Name:
+            <input
+              type="text"
+              name="ContributionLogName"
+              value={log.ContributionLogName}
+              onChange={handleChange}
+            />
+      </label>
+
+      <label className="formLabel">
+        Contribution Log User Name:
+            <input
+              type="text"
+              name="ContributionLogUserName"
+              value={log.ContributionLogUserName}
+              onChange={handleChange}
+            />
+      </label>  
+
+      <label className="formLabel">
+        Contribution Log Group Name:
+            <input
+              type="text"
+              name="ContributionLogGroupName"
+              value={log.ContributionLogGroupName}
+              onChange={handleChange}
+            />
+      </label>  
+
+      <label className="formLabel">
+        Contribution Log Group ID:
+            <input
+              type="number"
+              name="ContributionLogGroupID"
+              value={log.ContributionLogGroupID}
+              onChange={handleChange}
+            />
+      </label>
+
+      <label className="formLabel">
+          Log Submission Date:
+            <input
+              type="datetime-local"
+              name="LogSubmissionDate"
+              value={log.LogSubmissionDate}
+              onChange={handleChange}
+            />
+      </label>             
+
+      <label className="formLabel">
+          Contribution Attendance:
             <select
               name="Attendance"
-              value={conformance.js2html['Attendance'](log.Attendance)}
+              value={log.ContributionAttendance}
               onChange={handleChange}
             >
-              <option value="Present">Present</option>
-              <option value="Late">Late</option>
-              <option value='Apologies'>Apologies</option>
-              <option value='Not Present'>Not Present</option>
+              {attendanceOptions.map(option => (
+                <option key={option.AttendanceID} value={option.AttendanceName}>
+                  {option.AttendanceName}
+                </option>
+              ))}
             </select>
         </label>
 
         <label className="formLabel">
-          Homework Completed:
+          Contribution Completion:
             <select
-              name="HomeworkCompleted"
-              value={conformance.js2html['HomeworkCompleted'](log.HomeworkCompleted)}
+              name="ContributionCompletion"
+              value={log.ContributionCompletion}
               onChange={handleChange}
             >
-              <option value="Completed">Completed</option>
-              <option value="Partially Completed">Partially Completed</option>
-              <option value='Not Completed'>Not Completed</option>
+              {completionOptions.map(option => (
+                <option key={option.CompletionID} value={option.CompletionName}>
+                  {option.CompletionName}
+                </option>
+              ))}
             </select>
         </label>
 
         <label className="formLabel">
-          Tasks For Next Week:
+        Contribution Future Tasks:
             <textarea
               className="formTextArea"
-              name="TasksForNextWeek"
-              value={conformance.js2html['TasksForNextWeek'](log.TasksForNextWeek)}
+              name="ContributionFutureTasks"
+              value={log.ContributionFutureTasks}
               onChange={handleChange}
             />
         </label>

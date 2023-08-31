@@ -116,6 +116,7 @@ function GroupInfo({ selectedGroupID }) {
           <CardContainer>
             {logs.map((log) => (
               <CardContainer>
+                <h1>{log.LogName}</h1>
                 {contribution
                   .filter(
                     (contribution) =>

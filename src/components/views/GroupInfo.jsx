@@ -3,6 +3,7 @@ import { useState, useEffect } from "react";
 import { CardContainer, Card } from "../UI/Card.jsx";
 import UserCard from "../Entity/User/UserCard.jsx";
 import LogCard from "../Entity/Logs/LogCard.jsx";
+import ContributionCard from "../Entity/Logs/ContributionCard.jsx";
 import "./Modules.scss";
 import CoLoForm from "../Entity/Logs/CoLoForm.jsx";
 import API from "../api/API.jsx";
@@ -114,18 +115,19 @@ function GroupInfo({ selectedGroupID }) {
           </CardContainer>
           <CardContainer>
             {logs.map((log) => (
-              <Card>
+              <CardContainer>
                 {contribution
                   .filter(
-                    (contribution) => contribution.ContributionID == log.LogID
+                    (contribution) =>
+                      contribution.ContributionLogID == log.LogID
                   )
                   .map((contribution) => (
-                    <LogCard
-                      log={contribution}
+                    <ContributionCard
+                      contribution={contribution}
                       key={contribution.ContributionID}
                     />
                   ))}
-              </Card>
+              </CardContainer>
             ))}
           </CardContainer>
         </>

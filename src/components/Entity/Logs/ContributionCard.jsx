@@ -3,7 +3,7 @@ import { Card } from "../../UI/Card.jsx";
 import { Link } from "react-router-dom";
 //import "./UserCard.scss";
 
-function LogCard({ log }) {
+function ContributionCard({ contribution }) {
   // Initialisation --------------------------------------
   // State -----------------------------------------------
   // Handlers --------------------------------------------
@@ -13,7 +13,8 @@ function LogCard({ log }) {
     <div className="userCard">
       <Card>
         <div className="userCardItems">
-          <h3>{log.LogName}</h3>
+          <h3>{contribution.ContributionFuturetasks}</h3>
+          <h4>{contribution.ContributionUserID}</h4>
         </div>
       </Card>
     </div>
@@ -28,4 +29,4 @@ function LogCard({ log }) {
 //   }),
 //};
 
-export default LogCard;
+export default ContributionCard;

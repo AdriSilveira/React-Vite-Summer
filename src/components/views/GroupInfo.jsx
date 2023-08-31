@@ -115,12 +115,16 @@ function GroupInfo({ selectedGroupID }) {
           <CardContainer>
             {logs.map((log) => (
               <Card>
-                {contribution.map((contribution) => (
-                  <LogCard
-                    log={contribution}
-                    key={contribution.ContributionID}
-                  />
-                ))}
+                {contribution
+                  .filter(
+                    (contribution) => contribution.ContributionID == log.LogID
+                  )
+                  .map((contribution) => (
+                    <LogCard
+                      log={contribution}
+                      key={contribution.ContributionID}
+                    />
+                  ))}
               </Card>
             ))}
           </CardContainer>

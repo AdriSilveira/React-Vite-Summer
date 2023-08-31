@@ -2,9 +2,10 @@ import { Link } from "react-router-dom";
 import { useState, useEffect } from "react";
 import { CardContainer, Card } from "../UI/Card.jsx";
 import UserCard from "../Entity/User/UserCard.jsx";
-import LogForm from "../Entity/Logs/LogForm.jsx";
+import LogCard from "../Entity/Logs/LogCard.jsx";
 import "./Modules.scss";
 import CoLoForm from "../Entity/Logs/CoLoForm.jsx";
+import API from "../api/API.jsx";
 import "./GroupInfo.scss";
 
 function GroupInfo({ selectedGroupID }) {
@@ -13,24 +14,58 @@ function GroupInfo({ selectedGroupID }) {
   const RoundButton = () => {
     return <button classname="actions"></button>;
   };
-  console.log(selectedGroupID);
+  //console.log(selectedGroupID);
   const SelectedGroup = selectedGroupID;
   const apiURL = "http://softwarehub.uk/unibase/api";
   const myGroupEndpoint = `${apiURL}/users/groups/${SelectedGroup}`;
+  const logEndpoint = `/logs/`;
+  const contibutionEndpoint = `/contributions/log/`;
 
   // State ---------------------------------------
   const [GroupStudents, setGroupStudents] = useState(null);
 
   const [showCoLoForm, setShowCoLoForm] = useState(false);
 
+  const [contribution, setContribuion] = useState([]);
+
+  const [logs, setLogs] = useState([]);
+
   const apiGet = async (endpoint) => {
     const response = await fetch(endpoint);
     const result = await response.json();
     setGroupStudents(result);
   };
+  const apiGetContribution = async (log, endpoint) => {
+    const response = await API.get(endpoint.concat(log.LogID));
+    if (response.isSuccess) {
+      return response.result;
+    } else setLoadingMessage("No groups found");
+  };
+
+  const apiGetLog = async (endpoint) => {
+    const response = await API.get(endpoint);
+    if (response.isSuccess) {
+      return response.result;
+    } else setLoadingMessage("No assessments found");
+  };
+
+  const getLogs = async () => {
+    const logs = await apiGetLog(logEndpoint);
+    for (const log of logs) {
+      const tempContribution = await apiGetContribution(
+        log,
+        contibutionEndpoint
+      );
+      console.log(tempContribution);
+      if (tempContribution != undefined) {
+        setContribuion(contribution.concat(tempContribution));
+      }
+    }
+  };
 
   useEffect(() => {
     apiGet(myGroupEndpoint);
+    getLogs();
   }, [myGroupEndpoint]);
 
   // Handlers ------------------------------------
@@ -38,7 +73,7 @@ function GroupInfo({ selectedGroupID }) {
   const selectGroup = () => {
     setIsGroupView(true);
   };
-  
+
   // View --------------------------------------
   return (
     <>
@@ -63,14 +98,22 @@ function GroupInfo({ selectedGroupID }) {
           </Card>
           <CardContainer>
             <div className="button-CoLo">
-              <button onClick={() => setShowCoLoForm(true)}> Add Contribution Log </button>
+              <button onClick={() => setShowCoLoForm(true)}>
+                {" "}
+                Add Contribution Log{" "}
+              </button>
             </div>
-              {showCoLoForm && (
-                <CoLoForm
+            {showCoLoForm && (
+              <CoLoForm
                 onCancel={() => setShowCoLoForm(false)}
                 onSuccess={() => setShowCoLoForm(false)}
-                />
-              )}           
+              />
+            )}
+          </CardContainer>
+          <CardContainer>
+            {contribution.map((contribution) => (
+              <LogCard log={contribution} key={contribution.ContributionID} />
+            ))}
           </CardContainer>
         </>
       )}

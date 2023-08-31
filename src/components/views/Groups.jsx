@@ -48,8 +48,8 @@ function Groups({
     const assessments = await apiCallAss(assEndpoint);
     for (const assessment of assessments) {
       const tempGroups = await apiCallGroups(assessment, groupsEndpoint);
-      console.log(assessment);
-      console.log(tempGroups);
+      //console.log(assessment);
+      //console.log(tempGroups);
       if (tempGroups != undefined) {
         setGroups(groups.concat(tempGroups));
       }

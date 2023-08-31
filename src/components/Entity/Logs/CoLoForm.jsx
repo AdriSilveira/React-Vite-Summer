@@ -1,7 +1,7 @@
-import { useState, useEffect } from 'react';
-import PropTypes from 'prop-types';
-import Action from '../../UI/Actions.jsx';
-import './CoLoForm.scss';
+import { useState, useEffect } from "react";
+import PropTypes from "prop-types";
+import Action from "../../UI/Actions.jsx";
+import "./CoLoForm.scss";
 
 const initialLog = {
   //ModuleName: 'New Module',
@@ -11,56 +11,56 @@ const initialLog = {
   //  LogName: '',
   //  LogGroupID: null,
   //  LogSubmissionDate: new Date().toISOString(),
-  ContributionLogName: '',
-  ContributionLogUserName: '',
-  ContributionLogGroupName:'',
+  ContributionLogName: "",
+  ContributionLogUserName: "",
+  ContributionLogGroupName: "",
   ContributionLogGroupID: null,
-  ContributionAttendance: '',
-  ContributionCompletion: '',
-  ContributionFutureTasks: '',
+  ContributionAttendance: "",
+  ContributionCompletion: "",
+  ContributionFutureTasks: "",
   //ModuleImageURL:
-   // 'https://images.freeimages.com/images/small-previews/9b8/electronic-components-2-1242738.jpg',
+  // 'https://images.freeimages.com/images/small-previews/9b8/electronic-components-2-1242738.jpg',
 };
 
 function CoLoForm({ onCancel, onSuccess }) {
   // Initialisation ------------------------------
   const conformance = {
     html2js: {
-     // ModuleName: (value) => (value === '' ? null : value),
-     // ModuleCode: (value) => (value === '' ? null : value),
-     // ModuleLevel: (value) => parseInt(value),
-     // ModuleYearID: (value) => (value == 0 ? null : parseInt(value)),
-     ContributionLogName: (value) => (value === '' ? ' ' : value),
-     ContributionLogUserName: (value) => (value === '' ? ' ' : value),
-     ContributionLogGroupName: (value) => (value === '' ? ' ' : value),
-     ContributionAttendance: (value) => (value === '' ? null : value),
-     ContributionCompletion: (value) => (value === '' ? null : value),
-     ContributionFutureTasks: (value) => (value === '' ? '  ' : value),
-     // ModuleImageURL: (value) => (value === '' ? null : value),
+      // ModuleName: (value) => (value === '' ? null : value),
+      // ModuleCode: (value) => (value === '' ? null : value),
+      // ModuleLevel: (value) => parseInt(value),
+      // ModuleYearID: (value) => (value == 0 ? null : parseInt(value)),
+      ContributionLogName: (value) => (value === "" ? " " : value),
+      ContributionLogUserName: (value) => (value === "" ? " " : value),
+      ContributionLogGroupName: (value) => (value === "" ? " " : value),
+      ContributionAttendance: (value) => (value === "" ? null : value),
+      ContributionCompletion: (value) => (value === "" ? null : value),
+      ContributionFutureTasks: (value) => (value === "" ? "  " : value),
+      // ModuleImageURL: (value) => (value === '' ? null : value),
     },
     js2html: {
-     // ModuleName: (value) => (value === null ? '' : value),
-     // ModuleCode: (value) => (value === null ? '' : value),
-     // ModuleLevel: (value) => value,
-     // ModuleYearID: (value) => (value === null ? 0 : value),
-     ContributionLogName: (value) => (value === '' ? ' ' : value),
-     ContributionLogUserName: (value) => (value === '' ? ' ' : value),
-     ContributionLogGroupName: (value) => (value === '' ? ' ' : value),
-     ContributionAttendance: (value) => (value === '' ? null : value),
-     ContributionCompletion: (value) => (value === '' ? null : value),
-     ContributionFutureTasks: (value) => (value === '' ? '' : value),
-     // ModuleImageURL: (value) => (value === null ? '' : value),
+      // ModuleName: (value) => (value === null ? '' : value),
+      // ModuleCode: (value) => (value === null ? '' : value),
+      // ModuleLevel: (value) => value,
+      // ModuleYearID: (value) => (value === null ? 0 : value),
+      ContributionLogName: (value) => (value === "" ? " " : value),
+      ContributionLogUserName: (value) => (value === "" ? " " : value),
+      ContributionLogGroupName: (value) => (value === "" ? " " : value),
+      ContributionAttendance: (value) => (value === "" ? null : value),
+      ContributionCompletion: (value) => (value === "" ? null : value),
+      ContributionFutureTasks: (value) => (value === "" ? "" : value),
+      // ModuleImageURL: (value) => (value === null ? '' : value),
     },
   };
-  const apiURL = 'http://softwarehub.uk/unibase/api';
- // const yearsEndpoint = `${apiURL}/years`;
+  const apiURL = "http://softwarehub.uk/unibase/api";
+  // const yearsEndpoint = `${apiURL}/years`;
   //const staffEndpoint = `${apiURL}/users/staff`;
   //const postModuleEndpoint = `${apiURL}/modules`;
   const postLogEndpointExample = `${apiURL}/contributionlogs`;
   const postLogEndpointGraeme = `${apiURL}/logs/1`;
   const attendanceEndpoint = `${apiURL}/attendance`;
   const completionEndpoint = `${apiURL}/completion`;
-  const contributionsEndpoint =`${apiURL}/contributions/1`;
+  const contributionsEndpoint = `${apiURL}/contributions/1`;
 
   // State ---------------------------------------
   const [log, setLog] = useState(initialLog);
@@ -79,9 +79,9 @@ function CoLoForm({ onCancel, onSuccess }) {
   const apiPost = async (endpoint, record) => {
     // Build request object
     const request = {
-      method: 'POST',
+      method: "POST",
       body: JSON.stringify(record),
-      headers: { 'Content-type': 'application/json' },
+      headers: { "Content-type": "application/json" },
     };
 
     // Call the Fetch
@@ -92,9 +92,9 @@ function CoLoForm({ onCancel, onSuccess }) {
       : { isSuccess: false, message: result.message };
   };
 
- // useEffect(() => {
+  // useEffect(() => {
   //  apiGet(yearsEndpoint, setYears);
- // }, [yearsEndpoint]);
+  // }, [yearsEndpoint]);
 
   /*useEffect(() => {
     apiGet(staffEndpoint, setStaff);
@@ -110,7 +110,7 @@ function CoLoForm({ onCancel, onSuccess }) {
 
   useEffect(() => {
     apiGet(contributionsEndpoint, setContribution);
-  }, [contributionsEndpoint]); 
+  }, [contributionsEndpoint]);
 
   // Handlers ------------------------------------
   const handleChange = (event) => {
@@ -129,97 +129,95 @@ function CoLoForm({ onCancel, onSuccess }) {
   return (
     <div className="CoLoForm">
       <div className="FormTray">
-
-      <label className="formLabel">
+        <label className="formLabel">
           Contribution Log Name:
-            <input
-              type="text"
-              name="ContributionLogName"
-              value={log.ContributionLogName}
-              onChange={handleChange}
-            />
-      </label>
+          <input
+            type="text"
+            name="ContributionLogName"
+            value={log.ContributionLogName}
+            onChange={handleChange}
+          />
+        </label>
 
-      <label className="formLabel">
-        Contribution Log User Name:
-            <input
-              type="text"
-              name="ContributionLogUserName"
-              value={log.ContributionLogUserName}
-              onChange={handleChange}
-            />
-      </label>  
+        <label className="formLabel">
+          Contribution Log User Name:
+          <input
+            type="text"
+            name="ContributionLogUserName"
+            value={log.ContributionLogUserName}
+            onChange={handleChange}
+          />
+        </label>
 
-      <label className="formLabel">
-        Contribution Log Group Name:
-            <input
-              type="text"
-              name="ContributionLogGroupName"
-              value={log.ContributionLogGroupName}
-              onChange={handleChange}
-            />
-      </label>  
+        <label className="formLabel">
+          Contribution Log Group Name:
+          <input
+            type="text"
+            name="ContributionLogGroupName"
+            value={log.ContributionLogGroupName}
+            onChange={handleChange}
+          />
+        </label>
 
-      <label className="formLabel">
-        Contribution Log Group ID:
-            <input
-              type="number"
-              name="ContributionLogGroupID"
-              value={log.ContributionLogGroupID}
-              onChange={handleChange}
-            />
-      </label>
+        <label className="formLabel">
+          Contribution Log Group ID:
+          <input
+            type="number"
+            name="ContributionLogGroupID"
+            value={log.ContributionLogGroupID}
+            onChange={handleChange}
+          />
+        </label>
 
-      <label className="formLabel">
+        <label className="formLabel">
           Log Submission Date:
-            <input
-              type="datetime-local"
-              name="LogSubmissionDate"
-              value={log.LogSubmissionDate}
-              onChange={handleChange}
-            />
-      </label>             
+          <input
+            type="datetime-local"
+            name="LogSubmissionDate"
+            value={log.LogSubmissionDate}
+            onChange={handleChange}
+          />
+        </label>
 
-      <label className="formLabel">
+        <label className="formLabel">
           Contribution Attendance:
-            <select
-              name="Attendance"
-              value={log.ContributionAttendance}
-              onChange={handleChange}
-            >
-              {attendanceOptions.map(option => (
-                <option key={option.AttendanceID} value={option.AttendanceName}>
-                  {option.AttendanceName}
-                </option>
-              ))}
-            </select>
+          <select
+            name="Attendance"
+            value={log.ContributionAttendance}
+            onChange={handleChange}
+          >
+            {attendanceOptions.map((option) => (
+              <option key={option.AttendanceID} value={option.AttendanceName}>
+                {option.AttendanceName}
+              </option>
+            ))}
+          </select>
         </label>
 
         <label className="formLabel">
           Contribution Completion:
-            <select
-              name="ContributionCompletion"
-              value={log.ContributionCompletion}
-              onChange={handleChange}
-            >
-              {completionOptions.map(option => (
-                <option key={option.CompletionID} value={option.CompletionName}>
-                  {option.CompletionName}
-                </option>
-              ))}
-            </select>
+          <select
+            name="ContributionCompletion"
+            value={log.ContributionCompletion}
+            onChange={handleChange}
+          >
+            {completionOptions.map((option) => (
+              <option key={option.CompletionID} value={option.CompletionName}>
+                {option.CompletionName}
+              </option>
+            ))}
+          </select>
         </label>
 
         <label className="formLabel">
-        Contribution Future Tasks:
-            <textarea
-              className="formTextArea"
-              name="ContributionFutureTasks"
-              value={log.ContributionFutureTasks}
-              onChange={handleChange}
-            />
+          Contribution Future Tasks:
+          <textarea
+            className="formTextArea"
+            name="ContributionFutureTasks"
+            value={log.ContributionFutureTasks}
+            onChange={handleChange}
+          />
         </label>
-
       </div>
 
       <Action.Tray>

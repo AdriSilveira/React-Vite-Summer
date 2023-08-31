@@ -51,6 +51,8 @@ function GroupInfo({ selectedGroupID }) {
 
   const getLogs = async () => {
     const logs = await apiGetLog(logEndpoint);
+    console.log(logs);
+    setLogs(logs);
     for (const log of logs) {
       const tempContribution = await apiGetContribution(
         log,
@@ -111,8 +113,15 @@ function GroupInfo({ selectedGroupID }) {
             )}
           </CardContainer>
           <CardContainer>
-            {contribution.map((contribution) => (
-              <LogCard log={contribution} key={contribution.ContributionID} />
+            {logs.map((log) => (
+              <Card>
+                {contribution.map((contribution) => (
+                  <LogCard
+                    log={contribution}
+                    key={contribution.ContributionID}
+                  />
+                ))}
+              </Card>
             ))}
           </CardContainer>
         </>

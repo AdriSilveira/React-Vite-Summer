@@ -2,7 +2,7 @@ import { Link } from "react-router-dom";
 import { useState, useEffect } from "react";
 import { CardContainer, Card } from "../UI/Card.jsx";
 import UserCard from "../Entity/User/UserCard.jsx";
-import LogCard from "../Entity/Logs/LogCard.jsx";
+import Modal from "../Entity/Logs/Modal.jsx";
 import ContributionCard from "../Entity/Logs/ContributionCard.jsx";
 import "./Modules.scss";
 import CoLoForm from "../Entity/Logs/CoLoForm.jsx";
@@ -30,6 +30,8 @@ function GroupInfo({ selectedGroupID }) {
   const [contribution, setContribuion] = useState([]);
 
   const [logs, setLogs] = useState([]);
+
+  const [isOpen, setIsOpen] = useState(false);
 
   const apiGet = async (endpoint) => {
     const response = await fetch(endpoint);
@@ -116,18 +118,17 @@ function GroupInfo({ selectedGroupID }) {
           <CardContainer>
             {logs.map((log) => (
               <CardContainer>
-                <h1>{log.LogName}</h1>
-                {contribution
-                  .filter(
-                    (contribution) =>
-                      contribution.ContributionLogID == log.LogID
-                  )
-                  .map((contribution) => (
-                    <ContributionCard
-                      contribution={contribution}
-                      key={contribution.ContributionID}
-                    />
-                  ))}
+                <button onClick={() => setIsOpen(true)}>{log.LogName}</button>
+                {isOpen && (
+                  <Modal
+                    setIsOpen={setIsOpen}
+                    contribution={contribution.filter(
+                      (contribution) =>
+                        contribution.ContributionLogID == log.LogID
+                    )}
+                    log={log}
+                  />
+                )}
               </CardContainer>
             ))}
           </CardContainer>

@@ -2,7 +2,7 @@ import { Link } from "react-router-dom";
 import { useState, useEffect } from "react";
 import { CardContainer, Card } from "../UI/Card.jsx";
 import UserCard from "../Entity/User/UserCard.jsx";
-import Modal from "../Entity/Logs/Modal.jsx";
+import LogCard from "../Entity/Logs/LogCard.jsx";
 import ContributionCard from "../Entity/Logs/ContributionCard.jsx";
 import "./Modules.scss";
 import CoLoForm from "../Entity/Logs/CoLoForm.jsx";
@@ -36,7 +36,11 @@ function GroupInfo({ selectedGroupID }) {
   const apiGet = async (endpoint) => {
     const response = await fetch(endpoint);
     const result = await response.json();
-    setGroupStudents(result);
+    setGroupStudents(
+      result.sort(function (a, b) {
+        return a.UserId - b.UserId;
+      })
+    );
   };
   const apiGetContribution = async (log, endpoint) => {
     const response = await API.get(endpoint.concat(log.LogID));
@@ -71,7 +75,7 @@ function GroupInfo({ selectedGroupID }) {
   useEffect(() => {
     apiGet(myGroupEndpoint);
     getLogs();
-  }, [myGroupEndpoint]);
+  }, []);
 
   // Handlers ------------------------------------
   // Function to handle going back to the Modules view
@@ -116,20 +120,22 @@ function GroupInfo({ selectedGroupID }) {
             )}
           </CardContainer>
           <CardContainer>
+            <Card>
+              <div className="userGrid">
+                <div classname="userGridItem">test</div>
+                {GroupStudents.map((students) => (
+                  <div classname="userGridItem">{students.UserLastname}</div>
+                ))}
+              </div>
+            </Card>
             {logs.map((log) => (
-              <CardContainer>
-                <button onClick={() => setIsOpen(true)}>{log.LogName}</button>
-                {isOpen && (
-                  <Modal
-                    setIsOpen={setIsOpen}
-                    contribution={contribution.filter(
-                      (contribution) =>
-                        contribution.ContributionLogID == log.LogID
-                    )}
-                    log={log}
-                  />
+              <LogCard
+                students={GroupStudents}
+                log={log}
+                contributions={contribution.filter(
+                  (contribution) => contribution.ContributionLogID == log.LogID
                 )}
-              </CardContainer>
+              />
             ))}
           </CardContainer>
         </>

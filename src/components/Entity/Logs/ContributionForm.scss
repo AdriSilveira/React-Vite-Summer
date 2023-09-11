@@ -1,6 +1,6 @@
 $BorderGrey: LightGrey;
 
-div.LogForm {
+.ContributionForm {
   width: 100%;
   padding: 20px;
   border: 1px solid $BorderGrey;
@@ -8,8 +8,9 @@ div.LogForm {
   display: flex;
   flex-direction: column;
   gap: 20px;
+}
 
-  div.FormTray {
+.FormTray {
     width: 100%;
 
     label,
@@ -48,26 +49,44 @@ div.LogForm {
         border-color: $DarkGreen;
         outline-color: $DarkGreen;
       }
-
     }
   }
+ 
 
-      .ContributionButton button {
-        display: flex;
-        justify-content: flex-end;
-        margin-top: 10px;
-      
-          padding: 5px 10px;
-          background-color: #00a387;
-          margin: 5px 5px 5px 30px;
-          color: black;
-          border: none;
-          border-radius: 5px;
-          cursor: pointer;
-          transition: background-color 0.3s ease; 
-    }
-      
-    .ContributionButton button:hover {
-            background-color: blueviolet;
-          }  
+.formLabel {
+  display: block;
+  margin-top: 10px;
+  margin-bottom: 5px;
+  font-weight: bold;
 }
+
+ .formTextArea {
+    width: 100%;
+    height: 100px;
+    padding: 18px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    font-size: 14px;
+    resize: vertical;
+
+    &:hover,
+    &:focus {
+      outline-width: 1px;
+      outline-style: solid;
+      border-width: 1px;
+      border-style: solid;
+    }
+    &:hover {
+      border-color: $BorderGrey;
+      outline-color: $BorderGrey;
+    }
+
+    $Green: #29e7cd; // Cyan
+    $DarkGreen: darken($Green, 10%);
+
+    &:focus {
+      border-color: $DarkGreen;
+      outline-color: $DarkGreen;
+    }
+  }
+  

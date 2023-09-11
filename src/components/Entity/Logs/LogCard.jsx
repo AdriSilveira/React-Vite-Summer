@@ -3,6 +3,7 @@ import { Card } from "../../UI/Card.jsx";
 import { Grid as Grid } from "../../UI/Grid.jsx";
 import { Link } from "react-router-dom";
 import "./LogCard.scss";
+import EmptyContribution from "../../data/EmptyContribution.js";
 import { useEffect, useState } from "react";
 
 function LogCard({ log, contributions, students }) {
@@ -19,14 +20,24 @@ function LogCard({ log, contributions, students }) {
   }, []);
 
   const sortContributions = () => {
-    setSortedContribuion(
-      contributions.sort(function (a, b) {
-        return a.ContributionUserID - b.ContributionUserID;
-      })
-    );
+    if (contributions.length == 1) {
+      setSortedContribuion(contributions);
+    } else {
+      setSortedContribuion(
+        contributions.sort(function (a, b) {
+          return a.ContributionUserID - b.ContributionUserID;
+        })
+      );
+    }
+    console.log("--------");
+    console.log(contributions);
+    console.log(sortedContribution);
+
     students.forEach((student) => {
       if (sortedContribution[count] == undefined) {
-        console.log("undefined");
+        setCompleteContribution(
+          completeContribution.concat(EmptyContribution[0])
+        );
       } else if (
         student.UserID == sortedContribution[count].ContributionUserID
       ) {
@@ -35,7 +46,9 @@ function LogCard({ log, contributions, students }) {
         );
         setCount(count + 1);
       } else {
-        console.log("ok");
+        setCompleteContribution(
+          completeContribution.concat(EmptyContribution[0])
+        );
       }
     });
   };
@@ -48,7 +61,7 @@ function LogCard({ log, contributions, students }) {
         <h1>{log.LogName}</h1>
         <div className="gridContainer">
           <Grid top="Atendance" middle="Last Task" bottom="Future Task" />
-          {contributions.map((contrbution) => (
+          {completeContribution.map((contrbution) => (
             <Grid
               top={contrbution.ContributionAttendanceName}
               middle={contrbution.ContributionCompletionName}

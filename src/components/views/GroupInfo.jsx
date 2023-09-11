@@ -58,14 +58,12 @@ function GroupInfo({ selectedGroupID }) {
 
   const getLogs = async () => {
     const logs = await apiGetLog(logEndpoint);
-    console.log(logs);
     setLogs(logs);
     for (const log of logs) {
       const tempContribution = await apiGetContribution(
         log,
         contibutionEndpoint
       );
-      console.log(tempContribution);
       if (tempContribution != undefined) {
         setContribuion(contribution.concat(tempContribution));
       }
@@ -130,6 +128,7 @@ function GroupInfo({ selectedGroupID }) {
             </Card>
             {logs.map((log) => (
               <LogCard
+                key={log.LogID}
                 students={GroupStudents}
                 log={log}
                 contributions={contribution.filter(

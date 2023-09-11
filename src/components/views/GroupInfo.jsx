@@ -77,9 +77,7 @@ function GroupInfo({ selectedGroupID }) {
 
           <CardContainer>
             <div className="button-CoLo">
-              <button onClick={() => setShowLogForm(true)}>
-                Add Contribution Log
-              </button>
+              <button onClick={() => setShowLogForm(true)}>Add Log</button>
             </div>
             {showLogForm && (
               <LogForm

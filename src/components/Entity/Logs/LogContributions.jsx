@@ -1,136 +1,81 @@
-import { useState, useEffect } from "react";
-import PropTypes from "prop-types";
-import Action from "../../UI/Actions.jsx";
-import "./LogForm.scss";
-import API from "../../api/API.jsx";
+import Action from "../../UI/Actions";
+import "./LogContributions.scss";
 
-const initialLog = {
-  LogID: "",
-  LogName: "",
-  LogGroupID: "",
-  LogSubmissiondate: new Date(),
-  LogGroupName: "",
+const initialContribution = {
+  ContributionID: "",
+  ContributionLogID: "",
+  ContributionUserID: "",
+  ContributionAttendanceID: "",
+  ContributionCompletionID: "",
+  ContributionFuturetasks: "",
 };
 
-function LogForm({ onCancel, onSuccess, groupID }) {
-  // Initialisation ------------------------------
-  const conformance = {
-    html2js: {
-      LogID: (value) => (value === "" ? null : value),
-      LogName: (value) => (value === "" ? " " : value),
-      LogGroupID: (value) => (value === "" ? null : value),
-      LogSubmissiondate: (value) => new Date(value),
-      LogGroupName: (value) => (value === "" ? " " : value),
-    },
-
-    js2html: {
-      LogID: (value) => (value === null ? 0 : value),
-      LogName: (value) => (value === "" ? " " : value),
-      LogGroupID: (value) => (value === null ? 0 : value),
-      LogSubmissiondate: (value) => value.toString().slice(0, 10), //.toISOString()
-      LogGroupName: (value) => (value === "" ? " " : value),
-    },
-  };
-
-  const apiURL = "http://softwarehub.uk/unibase/api";
-  const LogEndpoint = `${apiURL}/logs/1`;
-  const postLogEndpoint = `${apiURL}/logs`;
-
-  // State ---------------------------------------
-  const [log, setLog] = useState({ ...initialLog, LogGroupID: groupID });
-
-  const apiGet = async (LogEndpoint, setState) => {
-    const response = await fetch(LogEndpoint);
-    const result = await response.json();
-    console.log(result);
-    setLog(result[0]);
-  };
-
-  const apiPost = async (LogEndpoint, record) => {
-    record.LogSubmissiondate = new Date(record.LogSubmissiondate);
-    const request = {
-      method: "POST",
-      body: JSON.stringify(record),
-      headers: { "content-type": "application/json" },
-    };
-
-    //Call the fetch
-    const response = await fetch(LogEndpoint, request);
-    const result = await response.json();
-    return response.status >= 200 && response.status < 300
-      ? { isSuccess: true }
-      : { isSuccess: false, message: result.message };
-  };
-
-  useEffect(() => {
-    if (groupID) {
-      apiGet(LogEndpoint);
-    }
-  }, []);
-
-  // Handlers ------------------------------------
-  const handleChange = (event) => {
-    const { name, value } = event.target;
-    setLog({ ...log, [name]: value });
-  };
-
-  const handleSubmit = async () => {
-    console.log(`log=[${JSON.stringify(log)}]`);
-
-    const result = await apiPost(postLogEndpoint, log);
-    result.isSuccess
-      ? console.log(`Insert successful`)
-      : console.log(`Insert NOT successful: ${result.message}`);
-    apiGet(LogEndpoint);
-  };
-
-  // View ----------------------------------------
+function LogContributions() {
+  //Initialisation---------------------------------------------------------------------
+  //State------------------------------------------------------------------------------
+  //Handlers---------------------------------------------------------------------------
+  const [contribution, setContribution] = useState(initialContribution);
+  //View-------------------------------------------------------------------------------
   return (
-    <div className="LogForm">
+    <div className="logContribution">
       <div className="FormTray">
-        <label className="formLabel">
-          Log Name:
+        <label for="">
+          Contribution ID
           <input
             type="text"
-            name="LogName"
-            value={conformance.js2html["LogName"](log.LogName)}
-            onChange={handleChange}
-          />
+            name="ContributionID"
+            value="{contribution.ContributionID}"
+          ></input>
         </label>
 
-        <label className="formLabel">
-          <input
-            type="hidden"
-            name="LogGroupID"
-            value={conformance.js2html["LogGroupID"](log.LogGroupID)}
-            onChange={handleChange}
-          />
-        </label>
-        <label className="formLabel">
-          Log Submission Date:
+        <label for="">
+          ContributionLogID
           <input
             type="text"
-            name="LogSubmissiondate"
-            value={conformance.js2html["LogSubmissiondate"](
-              log.LogSubmissiondate
-            )}
-            onChange={handleChange}
-          />
+            name="ContributionLogID"
+            value="{contribution.ContributionLogID}"
+          ></input>
+        </label>
+
+        <label for="">ContributionUserID</label>
+        <input
+          type="text"
+          name="Contribution User ID"
+          value="{contributionContributionUserID}"
+        ></input>
+
+        <label for="">
+          ContributionAttendanceID
+          <input
+            type="text"
+            name="Contribution Attendance ID"
+            value="{contribution.ContributionAttendanceID}"
+          ></input>
+        </label>
+
+        <label for="">
+          ContributionCompletionID
+          <input
+            type="text"
+            name="Contribution Completion ID"
+            value="{contribution.ContributionCompletionID}"
+          ></input>
+        </label>
+
+        <label for="">
+          ContributionFuturetasks
+          <input
+            type="text"
+            name="Contribution Future Tasks"
+            value="{contribution.ContributionFuturetasks}"
+          ></input>
         </label>
       </div>
 
       <Action.Tray>
-        <Action.Submit showText onClick={handleSubmit} />
-        <Action.Cancel showText buttonText="Cancel Form" onClick={onCancel} />
+        <Action.Cancel showText buttonText="Cancel form" onClick={oncancel} />
       </Action.Tray>
     </div>
   );
 }
-
-LogForm.propTypes = {
-  onCancel: PropTypes.func,
-  onSuccess: PropTypes.func,
-  groupID: PropTypes.number,
-};
-
-export default LogForm;
+export default LogContributions;

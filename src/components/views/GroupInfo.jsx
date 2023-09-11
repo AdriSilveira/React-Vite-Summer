@@ -74,6 +74,7 @@ function GroupInfo({ selectedGroupID }) {
               ))}
             </ul>
           </CardContainer>
+
           <CardContainer>
             <div className="button-CoLo">
               <button onClick={() => setShowLogForm(true)}>
@@ -82,6 +83,7 @@ function GroupInfo({ selectedGroupID }) {
             </div>
             {showLogForm && (
               <LogForm
+                groupID={selectedGroupID}
                 onCancel={() => setShowLogForm(false)}
                 onSuccess={() => setShowLogForm(false)}
               />

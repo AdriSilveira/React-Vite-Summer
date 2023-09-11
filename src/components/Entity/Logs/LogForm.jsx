@@ -5,9 +5,9 @@ import "./LogForm.scss";
 import API from "../../api/API.jsx";
 
 const initialLog = {
-  LogID: "",
+  LogID: 1,
   LogName: "",
-  LogGroupID: "",
+  // LogGroupID: 0,
   LogSubmissiondate: new Date(),
   LogGroupName: "",
 };
@@ -40,6 +40,7 @@ function LogForm({ onCancel, onSuccess, groupID }) {
   const [log, setLog] = useState({ ...initialLog, LogGroupID: groupID });
 
   const apiGet = async (LogEndpoint, setState) => {
+    console.log("Hi");
     const response = await fetch(LogEndpoint);
     const result = await response.json();
     console.log(result);
@@ -62,11 +63,12 @@ function LogForm({ onCancel, onSuccess, groupID }) {
       : { isSuccess: false, message: result.message };
   };
 
-  useEffect(() => {
-    if (groupID) {
-      apiGet(LogEndpoint);
-    }
-  }, []);
+  // useEffect(() => {
+  //   console.log(groupID);
+  //   if (groupID) {
+  //     apiGet(LogEndpoint);
+  //   }
+  // }, []);
 
   // Handlers ------------------------------------
   const handleChange = (event) => {
@@ -75,6 +77,18 @@ function LogForm({ onCancel, onSuccess, groupID }) {
   };
 
   const handleSubmit = async () => {
+    console.log(log);
+    if (!log.LogName) {
+      console.log("LogName cannot be empty.");
+      return;
+    }
+    if (!log.LogGroupID) {
+      console.log("LogGroupID is required.");
+      return;
+    }
+    //log is now a int using parsenInt
+    // const logWithNumberID = { ...log, LogID: parseInt(log.LogID, 2) };
+
     console.log(`log=[${JSON.stringify(log)}]`);
 
     const result = await apiPost(postLogEndpoint, log);

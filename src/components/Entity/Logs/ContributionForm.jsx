@@ -89,15 +89,20 @@ function ContributionForm({ onCancel, onSuccess }) {
       body: JSON.stringify(record),
       headers: { "Content-type": "application/json" },
     };
+    try {
+      // Call the Fetch
+      const response = await fetch(endpoint, request);
 
-    // Call the Fetch
-    const response = await fetch(endpoint, request);
-    const result = await response.json();
-    return response.status >= 200 && response.status < 300
-      ? { isSuccess: true }
-      : { isSuccess: false, message: result.message };
+      if (!response.ok) {
+        throw new Error(`HTTP error! Status: ${response.status}`);
+      }
+      const result = await response.json();
+      return { isSuccess: true, result };
+    } catch (error) {
+      console.error("Error:", error);
+      return { isSuccess: false, message: "An error occurred." };
+    }
   };
-
   useEffect(() => {
     apiGet(attendanceEndpoint, setAttendanceOptions);
   }, [attendanceEndpoint]);

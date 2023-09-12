@@ -37,8 +37,6 @@ function LogForm({ onCancel, onSuccess, groupID }) {
   const LogEndpoint = `${apiURL}/logs/1`;
   const postLogEndpoint = `${apiURL}/logs`;
 
-  
-
   // State ---------------------------------------
   const [log, setLog] = useState({ ...initialLog, LogGroupID: groupID });
   const [showContributionForm, setShowContributionForm] = useState(false);
@@ -128,14 +126,14 @@ function LogForm({ onCancel, onSuccess, groupID }) {
       </div>
 
       <div className="ContributionButton">
-      {/* ContributionForm Button */}
-      <button onClick={toggleContributionForm}>Add Contribution</button>
+        {/* ContributionForm Button */}
+        <button onClick={toggleContributionForm}>Add Contribution</button>
       </div>
       {/* Contribution Form */}
       {showContributionForm && (
         <ContributionForm
-          onCancel={() => setShowContributionForm(false)} 
-          onSuccess={() => setShowContributionForm(false)} 
+          onCancel={() => setShowContributionForm(false)}
+          onSuccess={() => setShowContributionForm(false)}
         />
       )}
 
@@ -143,7 +141,6 @@ function LogForm({ onCancel, onSuccess, groupID }) {
         <Action.Submit showText onClick={handleSubmit} />
         <Action.Cancel showText buttonText="Cancel Form" onClick={onCancel} />
       </Action.Tray>
-
     </div>
   );
 }

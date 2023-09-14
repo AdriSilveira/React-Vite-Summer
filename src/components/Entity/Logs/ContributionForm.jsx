@@ -20,48 +20,47 @@ const initialLog = {
 
 function ContributionForm({ onCancel, onSuccess }) {
   // Initialisation ------------------------------
-
-  const conformance = {
-    html2js: {
-      ContributionID: (value) => (value === "" ? null : value),
-      ContributionLogID: (value) => (value === "" ? null : value),
-      ContributionUserID: (value) => (value === "" ? null : value),
-      ContributionAttendanceID: (value) => (value === "" ? null : value),
-      ContributionCompletionID: (value) => (value === "" ? null : value),
-      ContributionFutureTasks: (value) => (value === "" ? "  " : value),
-      ContributionAttendanceName: (value) => (value === "" ? null : value),
-      ContributionCompletionName: (value) => (value === "" ? null : value),
-      ContributionLogName: (value) => (value === "" ? "  " : value),
-      ContributionLogGroupID: (value) => (value === "" ? null : value),
-      ContributionLogGroupName: (value) => (value === "" ? "  " : value),
-      ContributionLogUserName: (value) => (value === "" ? "  " : value),
-    },
-    js2html: {
-      ContributionID: (value) => (value === "" ? null : value),
-      ContributionLogID: (value) => (value === "" ? null : value),
-      ContributionUserID: (value) => (value === "" ? null : value),
-      ContributionAttendanceID: (value) => (value === "" ? null : value),
-      ContributionCompletionID: (value) => (value === "" ? null : value),
-      ContributionFutureTasks: (value) => (value === "" ? "  " : value),
-      ContributionAttendanceName: (value) => (value === "" ? null : value),
-      ContributionCompletionName: (value) => (value === "" ? null : value),
-      ContributionLogName: (value) => (value === "" ? "  " : value),
-      ContributionLogGroupID: (value) => (value === "" ? null : value),
-      ContributionLogGroupName: (value) => (value === "" ? "  " : value),
-      ContributionLogUserName: (value) => (value === "" ? "  " : value),
-    },
-  };
   const apiURL = "http://softwarehub.uk/unibase/api";
 
-  const postLogEndpointExample = `${apiURL}/contributionlogs`;
-  const postLogEndpointGraeme = `${apiURL}/logs/1`;
+  // const conformance = {
+  //   html2js: {
+  //     ContributionID: (value) => (value === "" ? null : value),
+  //     ContributionLogID: (value) => (value === "" ? null : value),
+  //     ContributionUserID: (value) => (value === "" ? null : value),
+  //     ContributionAttendanceID: (value) => (value === "" ? null : value),
+  //     ContributionCompletionID: (value) => (value === "" ? null : value),
+  //     ContributionFutureTasks: (value) => (value === "" ? "  " : value),
+  //     ContributionAttendanceName: (value) => (value === "" ? null : value),
+  //     ContributionCompletionName: (value) => (value === "" ? null : value),
+  //     ContributionLogName: (value) => (value === "" ? "  " : value),
+  //     ContributionLogGroupID: (value) => (value === "" ? null : value),
+  //     ContributionLogGroupName: (value) => (value === "" ? "  " : value),
+  //     ContributionLogUserName: (value) => (value === "" ? "  " : value),
+  //   },
+  //   js2html: {
+  //     ContributionID: (value) => (value === "" ? null : value),
+  //     ContributionLogID: (value) => (value === "" ? null : value),
+  //     ContributionUserID: (value) => (value === "" ? null : value),
+  //     ContributionAttendanceID: (value) => (value === "" ? null : value),
+  //     ContributionCompletionID: (value) => (value === "" ? null : value),
+  //     ContributionFutureTasks: (value) => (value === "" ? "  " : value),
+  //     ContributionAttendanceName: (value) => (value === "" ? null : value),
+  //     ContributionCompletionName: (value) => (value === "" ? null : value),
+  //     ContributionLogName: (value) => (value === "" ? "  " : value),
+  //     ContributionLogGroupID: (value) => (value === "" ? null : value),
+  //     ContributionLogGroupName: (value) => (value === "" ? "  " : value),
+  //     ContributionLogUserName: (value) => (value === "" ? "  " : value),
+  //   },
+  // };
+
+  // const postLogEndpointExample = `${apiURL}/contributionlogs`;
+  const postLogEndpointGraeme = `${apiURL}/logs`;
   const attendanceEndpoint = `${apiURL}/attendance`;
   const completionEndpoint = `${apiURL}/completion`;
   const contributionsEndpoint = `${apiURL}/contributions`;
 
   // State ---------------------------------------
   const [ContributionRec, setContributionRec] = useState(initialLog);
-
   const [attendanceOptions, setAttendanceOptions] = useState([]);
   const [completionOptions, setCompletionOptions] = useState([]);
   // const [contributions, setContributions] = useState([initialLog]);
@@ -84,6 +83,7 @@ function ContributionForm({ onCancel, onSuccess }) {
 
   const apiPost = async (endpoint, record) => {
     // Build request object
+    console.log(record);
     const request = {
       method: "POST",
       body: JSON.stringify(record),
@@ -91,6 +91,7 @@ function ContributionForm({ onCancel, onSuccess }) {
     };
     try {
       // Call the Fetch
+      console.log(endpoint);
       const response = await fetch(endpoint, request);
 
       if (!response.ok) {
@@ -105,15 +106,9 @@ function ContributionForm({ onCancel, onSuccess }) {
   };
   useEffect(() => {
     apiGet(attendanceEndpoint, setAttendanceOptions);
-  }, [attendanceEndpoint]);
-
-  useEffect(() => {
     apiGet(completionEndpoint, setCompletionOptions);
-  }, [completionEndpoint]);
-
-  useEffect(() => {
     apiGet(contributionsEndpoint, setContributionRec);
-  }, [contributionsEndpoint]);
+  }, [attendanceEndpoint, completionEndpoint, contributionsEndpoint]);
 
   // Handlers ------------------------------------
   const handleChange = (event) => {
@@ -124,22 +119,22 @@ function ContributionForm({ onCancel, onSuccess }) {
   const handleSubmit = async () => {
     console.log(`Contribution=[${JSON.stringify(ContributionRec)}]`);
 
-    const logData = {
-      ContributionID: ContributionRec.ContributionID,
-      ContributionLogID: ContributionRec.ContributionLogID,
-      ContributionUserID: ContributionRec.ContributionUserID,
-      ContributionAttendanceID: ContributionRec.ContributionAttendanceID,
-      ContributionCompletionID: ContributionRec.ContributionCompletionID,
-      ContributionFutureTasks: ContributionRec.ContributionFutureTasks,
-      ContributionAttendanceName: ContributionRec.ContributionAttendanceName,
-      ContributionCompletionName: ContributionRec.ContributionCompletionName,
-      ContributionLogName: ContributionRec.ContributionLogName,
-      ContributionLogGroupID: ContributionRec.ContributionLogGroupID,
-      ContributionLogGroupName: ContributionRec.ContributionLogGroupName,
-      ContributionLogUserName: ContributionRec.ContributionLogUserName,
-    };
+    // const logData = {
+    //   ContributionID: ContributionRec.ContributionID,
+    //   ContributionLogID: ContributionRec.ContributionLogID,
+    //   ContributionUserID: ContributionRec.ContributionUserID,
+    //   ContributionAttendanceID: ContributionRec.ContributionAttendanceID,
+    //   ContributionCompletionID: ContributionRec.ContributionCompletionID,
+    //   ContributionFutureTasks: ContributionRec.ContributionFutureTasks,
+    //   ContributionAttendanceName: ContributionRec.ContributionAttendanceName,
+    //   ContributionCompletionName: ContributionRec.ContributionCompletionName,
+    //   ContributionLogName: ContributionRec.ContributionLogName,
+    //   ContributionLogGroupID: ContributionRec.ContributionLogGroupID,
+    //   ContributionLogGroupName: ContributionRec.ContributionLogGroupName,
+    //   ContributionLogUserName: ContributionRec.ContributionLogUserName,
+    // };
 
-    const result = await apiPost(postLogEndpointGraeme, logData);
+    const result = await apiPost(contributionsEndpoint, ContributionRec[0]);
     if (result.isSuccess) onSuccess();
     else alert(result.message);
   };
@@ -152,7 +147,7 @@ function ContributionForm({ onCancel, onSuccess }) {
           Contribution Attendance:
           <select
             name="Attendance"
-            value={ContributionRec.ContributionAttendance}
+            value={ContributionRec.ContributionAttendanceName}
             onChange={handleChange}
           >
             {attendanceOptions.map((option) => (

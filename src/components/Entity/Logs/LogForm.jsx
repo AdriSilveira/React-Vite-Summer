@@ -14,6 +14,7 @@ const initialLog = {
 };
 
 function LogForm({ onCancel, onSuccess, groupID }) {
+  console.log("Component renderd");
   // Initialisation ------------------------------
   const conformance = {
     html2js: {
@@ -69,6 +70,9 @@ function LogForm({ onCancel, onSuccess, groupID }) {
       apiGet(LogEndpoint);
     }
   }, []);
+  useEffect(() => {
+    console.log("Log state:", log);
+  }, [log]);
 
   // Handlers ------------------------------------
   const handleChange = (event) => {

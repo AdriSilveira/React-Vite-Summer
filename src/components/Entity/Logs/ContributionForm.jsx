@@ -63,7 +63,6 @@ function ContributionForm({ onCancel, onSuccess }) {
   const [ContributionRec, setContributionRec] = useState(initialLog);
   const [attendanceOptions, setAttendanceOptions] = useState([]);
   const [completionOptions, setCompletionOptions] = useState([]);
-  // const [contributions, setContributions] = useState([initialLog]);
 
   const apiGet = async (endpoint, setState) => {
     try {
@@ -117,7 +116,7 @@ function ContributionForm({ onCancel, onSuccess }) {
   };
 
   const handleSubmit = async () => {
-    console.log(`Contribution=[${JSON.stringify(ContributionRec)}]`);
+    // console.log(`Contribution=[${JSON.stringify(ContributionRec)}]`);
 
     // const logData = {
     //   ContributionID: ContributionRec.ContributionID,

@@ -35,6 +35,7 @@ function GroupInfo({ selectedGroupID }) {
         throw new Error("Failed to fetch logs");
       }
       const data = await response.json();
+      console.log(data);
       setLogsrec(data);
     } catch (error) {
       console.error("Error fetching logs: ", error);
@@ -70,7 +71,7 @@ function GroupInfo({ selectedGroupID }) {
             <h2>Logs</h2>
             <ul>
               {logsrec.map((log) => (
-                <li key={log.id}>{log.message}</li>
+                <li key={log.LogID}>{log.LogName}</li>
               ))}
             </ul>
           </CardContainer>

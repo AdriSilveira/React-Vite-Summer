@@ -16,10 +16,11 @@ function LogCard({ log, contributions, students }) {
   const [count, setCount] = useState(0);
 
   useEffect(() => {
-    sortContributions();
-  }, []);
+    sortContributions(contributions);
+    finalContributions(sortedContribution);
+  }, [contributions, sortedContribution]);
 
-  const sortContributions = () => {
+  const sortContributions = (contributions) => {
     if (contributions.length == 1) {
       setSortedContribuion(contributions);
     } else {
@@ -29,27 +30,32 @@ function LogCard({ log, contributions, students }) {
         })
       );
     }
+  };
+  const finalContributions = (sortedContribution) => {
     console.log("--------");
     console.log(contributions);
     console.log(sortedContribution);
 
     students.forEach((student) => {
+      console.log(student.UserID);
+      //console.log(sortedContribution[count].ContributionUserID);
       if (sortedContribution[count] == undefined) {
-        setCompleteContribution(
-          completeContribution.concat(EmptyContribution[0])
-        );
+        const tempCont = [completeContribution, EmptyContribution[0]];
+        setCompleteContribution(tempCont);
+        console.log("a");
       } else if (
         student.UserID == sortedContribution[count].ContributionUserID
       ) {
-        setCompleteContribution(
-          completeContribution.concat(sortedContribution[count])
-        );
+        const tempCont = [completeContribution, sortedContribution[count]];
+        setCompleteContribution(tempCont);
         setCount(count + 1);
+        console.log("b");
       } else {
-        setCompleteContribution(
-          completeContribution.concat(EmptyContribution[0])
-        );
+        const tempCont = [completeContribution, EmptyContribution[0]];
+        setCompleteContribution(tempCont);
+        console.log("c");
       }
+      console.log(completeContribution);
     });
   };
   // Handlers --------------------------------------------

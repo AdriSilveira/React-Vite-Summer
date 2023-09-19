@@ -80,6 +80,7 @@ function GroupInfo({ selectedGroupID }) {
   const selectGroup = () => {
     setIsGroupView(true);
   };
+  console.log(contribution);
 
   // View --------------------------------------
   return (

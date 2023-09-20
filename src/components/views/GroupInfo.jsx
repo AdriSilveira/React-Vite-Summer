@@ -3,6 +3,7 @@ import { CardContainer, Card } from "../UI/Card.jsx";
 import UserCard from "../Entity/User/UserCard.jsx";
 import LogForm from "../Entity/Logs/LogForm.jsx";
 import LogCard from "../Entity/Logs/LogCard.jsx";
+import API from "../api/API.jsx";
 import "./Modules.scss";
 import "./GroupInfo.scss";
 
@@ -11,6 +12,8 @@ function GroupInfo({ selectedGroupID }) {
   const apiURL = "http://softwarehub.uk/unibase/api";
   const myGroupEndpoint = `${apiURL}/users/groups/${SelectedGroup}`;
   const logsEndpoint = `${apiURL}/logs`; // API endpoint for fetching logs
+  const logEndpoint = `/logs/`;
+  const contibutionEndpoint = `/contributions/log/`;
 
   const [GroupStudents, setGroupStudents] = useState(null);
   const [contribution, setContribuion] = useState([]);
@@ -25,7 +28,11 @@ function GroupInfo({ selectedGroupID }) {
         throw new Error("Failed to fetch group students");
       }
       const data = await response.json();
-      setGroupStudents(data);
+      setGroupStudents(
+        data.sort(function (a, b) {
+          return a.UserId - b.UserId;
+        })
+      );
     } catch (error) {
       console.error("Error fetching group students: ", error);
     }
@@ -73,7 +80,6 @@ function GroupInfo({ selectedGroupID }) {
     }
   };
 
-
   useEffect(() => {
     fetchGroupStudents();
     fetchLogs();
@@ -100,15 +106,6 @@ function GroupInfo({ selectedGroupID }) {
               ))}
             </CardContainer>
           </Card>
-          <CardContainer>
-            <h2>Logs</h2>
-            <ul>
-              {logsrec.map((log) => (
-                <li key={log.LogID}>{log.LogName}</li>
-              ))}
-            </ul>
-          </CardContainer>
-
           <CardContainer>
             <div className="button-CoLo">
               <button onClick={() => setShowLogForm(true)}>Add Log</button>

@@ -5,7 +5,7 @@ import "./ContributionForm.scss";
 
 const initialLog = {
   ContributionID: "",
-  ContributionLogID: "",
+  ContributionLogID: "1",
   ContributionUserID: "",
   ContributionAttendanceID: "",
   ContributionCompletionID: "",
@@ -106,34 +106,29 @@ function ContributionForm({ onCancel, onSuccess }) {
   useEffect(() => {
     apiGet(attendanceEndpoint, setAttendanceOptions);
     apiGet(completionEndpoint, setCompletionOptions);
-    apiGet(contributionsEndpoint, setContributionRec);
+    //apiGet(contributionsEndpoint, setContributionRec);
   }, [attendanceEndpoint, completionEndpoint, contributionsEndpoint]);
 
   // Handlers ------------------------------------
   const handleChange = (event) => {
+    console.log(ContributionRec);
     const { name, value } = event.target;
+    console.log();
     setContributionRec({ ...ContributionRec, [name]: value });
   };
 
   const handleSubmit = async () => {
     // console.log(`Contribution=[${JSON.stringify(ContributionRec)}]`);
 
-    // const logData = {
-    //   ContributionID: ContributionRec.ContributionID,
-    //   ContributionLogID: ContributionRec.ContributionLogID,
-    //   ContributionUserID: ContributionRec.ContributionUserID,
-    //   ContributionAttendanceID: ContributionRec.ContributionAttendanceID,
-    //   ContributionCompletionID: ContributionRec.ContributionCompletionID,
-    //   ContributionFutureTasks: ContributionRec.ContributionFutureTasks,
-    //   ContributionAttendanceName: ContributionRec.ContributionAttendanceName,
-    //   ContributionCompletionName: ContributionRec.ContributionCompletionName,
-    //   ContributionLogName: ContributionRec.ContributionLogName,
-    //   ContributionLogGroupID: ContributionRec.ContributionLogGroupID,
-    //   ContributionLogGroupName: ContributionRec.ContributionLogGroupName,
-    //   ContributionLogUserName: ContributionRec.ContributionLogUserName,
-    // };
-
-    const result = await apiPost(contributionsEndpoint, ContributionRec[0]);
+    const logData = {
+      ContributionLogID: ContributionRec.ContributionLogID,
+      ContributionUserID: ContributionRec.ContributionUserID,
+      ContributionAttendanceID: ContributionRec.ContributionAttendanceID,
+      ContributionCompletionID: ContributionRec.ContributionCompletionID,
+      ContributionFuturetasks: ContributionRec.ContributionFutureTasks,
+    };
+    console.log(logData);
+    const result = await apiPost(contributionsEndpoint, logData);
     if (result.isSuccess) onSuccess();
     else alert(result.message);
   };
@@ -142,36 +137,44 @@ function ContributionForm({ onCancel, onSuccess }) {
   return (
     <div className="ContributionForm">
       <div className="FormTray">
+        ContributionAttendanceID
+        <label className="formLabel">
+          User ID:
+          <textarea
+            className="formTextArea"
+            name="ContributionUserID"
+            value={ContributionRec.ContributionUserID}
+            onChange={handleChange}
+          />
+        </label>
         <label className="formLabel">
           Contribution Attendance:
           <select
-            name="Attendance"
-            value={ContributionRec.ContributionAttendanceName}
+            name="ContributionAttendanceID"
+            value={ContributionRec.ContributionAttendanceID}
             onChange={handleChange}
           >
             {attendanceOptions.map((option) => (
-              <option key={option.AttendanceID} value={option.AttendanceName}>
+              <option key={option.AttendanceID} value={option.AttendanceID}>
                 {option.AttendanceName}
               </option>
             ))}
           </select>
         </label>
-
         <label className="formLabel">
           Contribution Completion:
           <select
-            name="ContributionCompletion"
-            value={ContributionRec.ContributionCompletion}
+            name="ContributionCompletionID"
+            value={ContributionRec.ContributionCompletionID}
             onChange={handleChange}
           >
             {completionOptions.map((option) => (
-              <option key={option.CompletionID} value={option.CompletionName}>
+              <option key={option.CompletionID} value={option.CompletionID}>
                 {option.CompletionName}
               </option>
             ))}
           </select>
         </label>
-
         <label className="formLabel">
           Contribution Future Tasks:
           <textarea

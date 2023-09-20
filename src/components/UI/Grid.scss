@@ -1,0 +1,15 @@
+@import "../../global.scss";
+
+.gridColum {
+  display: grid;
+  column-rule: 4px solid black;
+  gap: 4px;
+  grid-auto-flow: column;
+  grid-template-columns: auto;
+  grid-template-rows: auto auto auto;
+  .gridRow {
+    display: inline;
+    border-bottom: 4px solid black;
+    height: 50px;
+  }
+}

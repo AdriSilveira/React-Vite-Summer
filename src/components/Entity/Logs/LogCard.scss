@@ -1,0 +1,16 @@
+@import "../../../global.scss";
+
+.logCard {
+  width: 100%;
+}
+.gridContainer {
+  display: grid;
+  column-rule: 4px solid black;
+  gap: 4px;
+  grid-auto-flow: column;
+  grid-template-rows: auto;
+  .gridItem {
+    display: inline;
+    border-right: 4px solid black;
+  }
+}

@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import { CardContainer, Card } from "../UI/Card.jsx";
 import UserCard from "../Entity/User/UserCard.jsx";
 import LogForm from "../Entity/Logs/LogForm.jsx";
+import LogCard from "../Entity/Logs/LogCard.jsx";
 import "./Modules.scss";
 import "./GroupInfo.scss";
 
@@ -12,6 +13,8 @@ function GroupInfo({ selectedGroupID }) {
   const logsEndpoint = `${apiURL}/logs`; // API endpoint for fetching logs
 
   const [GroupStudents, setGroupStudents] = useState(null);
+  const [contribution, setContribuion] = useState([]);
+  const [logs, setLogs] = useState([]);
   const [showLogForm, setShowLogForm] = useState(false);
   const [logsrec, setLogsrec] = useState([]);
 
@@ -42,9 +45,39 @@ function GroupInfo({ selectedGroupID }) {
     }
   };
 
+  const apiGetContribution = async (log, endpoint) => {
+    const response = await API.get(endpoint.concat(log.LogID));
+    if (response.isSuccess) {
+      return response.result;
+    } else setLoadingMessage("No groups found");
+  };
+
+  const apiGetLog = async (endpoint) => {
+    const response = await API.get(endpoint);
+    if (response.isSuccess) {
+      return response.result;
+    } else setLoadingMessage("No assessments found");
+  };
+
+  const getLogs = async () => {
+    const logs = await apiGetLog(logEndpoint);
+    setLogs(logs);
+    for (const log of logs) {
+      const tempContribution = await apiGetContribution(
+        log,
+        contibutionEndpoint
+      );
+      if (tempContribution != undefined) {
+        setContribuion(contribution.concat(tempContribution));
+      }
+    }
+  };
+
+
   useEffect(() => {
     fetchGroupStudents();
     fetchLogs();
+    getLogs();
   }, [selectedGroupID]);
 
   const [isGroupView, setIsGroupView] = useState(false);
@@ -87,6 +120,26 @@ function GroupInfo({ selectedGroupID }) {
                 onSuccess={() => setShowLogForm(false)}
               />
             )}
+          </CardContainer>
+          <CardContainer>
+            <Card>
+              <div className="userGrid">
+                <div classname="userGridItem">test</div>
+                {GroupStudents.map((students) => (
+                  <div classname="userGridItem">{students.UserLastname}</div>
+                ))}
+              </div>
+            </Card>
+            {logs.map((log) => (
+              <LogCard
+                key={log.LogID}
+                students={GroupStudents}
+                log={log}
+                contributions={contribution.filter(
+                  (contribution) => contribution.ContributionLogID == log.LogID
+                )}
+              />
+            ))}
           </CardContainer>
         </>
       )}

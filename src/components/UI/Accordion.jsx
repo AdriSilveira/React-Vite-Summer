@@ -15,16 +15,18 @@ const Accordion = ({ children }) => {
         const isActive = index === activeIndex;
 
         return (
-          <div className="accordion-item">
-            <button
-              className={`accordion-header ${isActive ? "active" : ""}`}
-              onClick={() => handleItemClick(index)}
-            >
-              {child.props.title}
-            </button>
-            {isActive && (
-              <div className="accordion-content">{child.props.children}</div>
-            )}
+          <div className="centered-container">
+            <div className="accordion-item">
+              <button
+                className={`accordion-header ${isActive ? "active" : ""}`}
+                onClick={() => handleItemClick(index)}
+              >
+                {child.props.title}
+              </button>
+              {isActive && (
+                <div className="accordion-content">{child.props.children}</div>
+              )}
+            </div>
           </div>
         );
       })}

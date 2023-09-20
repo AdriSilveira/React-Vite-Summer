@@ -4,9 +4,18 @@ $padding-content: 10px;
 $text-color: #190505;
 $button-size: 20px; // Customize the button size as needed
 $button-background: #00a387; // Customize the button background color
-
+.centered-accordion {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 90vh;
+}
 .accordion {
+  margin-left: 70px;
+  margin-right: 70px;
+
   .accordion-item {
+    max-width: 100%;
     border: 1px solid lightgray;
     border-radius: 5px;
     box-shadow: 4px 4px 8px 4px rgba(70, 70, 70, 0.3);

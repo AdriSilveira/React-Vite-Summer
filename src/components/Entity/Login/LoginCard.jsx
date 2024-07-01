@@ -1,7 +1,6 @@
 import PropTypes from "prop-types";
 import { Card } from "../../UI/Card.jsx";
-
-import "./LoginCard.scss";
+// import "./LoginCard.scss";
 
 function ModuleCard({ module, setIsModulesView }) {
   // Initialisation --------------------------------------

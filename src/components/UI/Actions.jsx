@@ -1,6 +1,6 @@
-import PropTypes from 'prop-types';
-import Icon from './Icons.jsx';
-import './Actions.scss';
+import PropTypes from "prop-types";
+import Icon from "./Icons.jsx";
+import "./Actions.scss";
 
 // -----------------------------------------
 // Action Button ---------------------------
@@ -26,7 +26,10 @@ Action.propTypes = {
 // -----------------------------------------
 
 Tray.propTypes = {
-  children: PropTypes.oneOfType([PropTypes.arrayOf(PropTypes.node), PropTypes.node]).isRequired,
+  children: PropTypes.oneOfType([
+    PropTypes.arrayOf(PropTypes.node),
+    PropTypes.node,
+  ]).isRequired,
 };
 
 export function Tray({ children }) {
@@ -45,7 +48,7 @@ const ActionPropTypes = {
 
 Add.propTypes = ActionPropTypes;
 
-export function Add({ onClick, showText = false, buttonText = 'Add' }) {
+export function Add({ onClick, showText = false, buttonText = "Add" }) {
   return (
     <Action buttonText={buttonText} onClick={onClick} showText={showText}>
       <Icon.Plus />
@@ -55,7 +58,7 @@ export function Add({ onClick, showText = false, buttonText = 'Add' }) {
 
 Cancel.propTypes = ActionPropTypes;
 
-export function Cancel({ onClick, showText = false, buttonText = 'Cancel' }) {
+export function Cancel({ onClick, showText = false, buttonText = "Cancel" }) {
   return (
     <Action buttonText={buttonText} onClick={onClick} showText={showText}>
       <Icon.Cross />
@@ -65,7 +68,11 @@ export function Cancel({ onClick, showText = false, buttonText = 'Cancel' }) {
 
 Collapse.propTypes = ActionPropTypes;
 
-export function Collapse({ onClick, showText = false, buttonText = 'Collapse' }) {
+export function Collapse({
+  onClick,
+  showText = false,
+  buttonText = "Collapse",
+}) {
   return (
     <Action buttonText={buttonText} onClick={onClick} showText={showText}>
       <Icon.Collapse />
@@ -75,7 +82,7 @@ export function Collapse({ onClick, showText = false, buttonText = 'Collapse' })
 
 Close.propTypes = ActionPropTypes;
 
-export function Close({ onClick, showText = false, buttonText = 'Close' }) {
+export function Close({ onClick, showText = false, buttonText = "Close" }) {
   return (
     <Action buttonText={buttonText} onClick={onClick} showText={showText}>
       <Icon.Cross />
@@ -85,7 +92,7 @@ export function Close({ onClick, showText = false, buttonText = 'Close' }) {
 
 Delete.propTypes = ActionPropTypes;
 
-export function Delete({ onClick, showText = false, buttonText = 'Delete' }) {
+export function Delete({ onClick, showText = false, buttonText = "Delete" }) {
   return (
     <Action buttonText={buttonText} onClick={onClick} showText={showText}>
       <Icon.Trash />
@@ -95,7 +102,7 @@ export function Delete({ onClick, showText = false, buttonText = 'Delete' }) {
 
 Dismiss.propTypes = ActionPropTypes;
 
-export function Dismiss({ onClick, showText = false, buttonText = 'Dismiss' }) {
+export function Dismiss({ onClick, showText = false, buttonText = "Dismiss" }) {
   return (
     <Action buttonText={buttonText} onClick={onClick} showText={showText}>
       <Icon.Cross />
@@ -105,7 +112,7 @@ export function Dismiss({ onClick, showText = false, buttonText = 'Dismiss' }) {
 
 Expand.propTypes = ActionPropTypes;
 
-export function Expand({ onClick, showText = false, buttonText = 'Expand' }) {
+export function Expand({ onClick, showText = false, buttonText = "Expand" }) {
   return (
     <Action buttonText={buttonText} onClick={onClick} showText={showText}>
       <Icon.Expand />
@@ -115,7 +122,11 @@ export function Expand({ onClick, showText = false, buttonText = 'Expand' }) {
 
 Favourites.propTypes = ActionPropTypes;
 
-export function Favourites({ onClick, showText = false, buttonText = 'List favourites' }) {
+export function Favourites({
+  onClick,
+  showText = false,
+  buttonText = "List favourites",
+}) {
   return (
     <Action buttonText={buttonText} onClick={onClick} showText={showText}>
       <Icon.RedHeart />
@@ -125,7 +136,11 @@ export function Favourites({ onClick, showText = false, buttonText = 'List favou
 
 ListAll.propTypes = ActionPropTypes;
 
-export function ListAll({ onClick, showText = false, buttonText = 'List all' }) {
+export function ListAll({
+  onClick,
+  showText = false,
+  buttonText = "List all",
+}) {
   return (
     <Action buttonText={buttonText} onClick={onClick} showText={showText}>
       <Icon.List />
@@ -135,7 +150,7 @@ export function ListAll({ onClick, showText = false, buttonText = 'List all' }) 
 
 Modify.propTypes = ActionPropTypes;
 
-export function Modify({ onClick, showText = false, buttonText = 'Modify' }) {
+export function Modify({ onClick, showText = false, buttonText = "Modify" }) {
   return (
     <Action buttonText={buttonText} onClick={onClick} showText={showText}>
       <Icon.Pen />
@@ -145,7 +160,7 @@ export function Modify({ onClick, showText = false, buttonText = 'Modify' }) {
 
 No.propTypes = ActionPropTypes;
 
-export function No({ onClick, showText = false, buttonText = 'No' }) {
+export function No({ onClick, showText = false, buttonText = "No" }) {
   return (
     <Action buttonText={buttonText} onClick={onClick} showText={showText}>
       <Icon.Cross />
@@ -155,7 +170,7 @@ export function No({ onClick, showText = false, buttonText = 'No' }) {
 
 Submit.propTypes = ActionPropTypes;
 
-export function Submit({ onClick, showText = false, buttonText = 'Submit' }) {
+export function Submit({ onClick, showText = false, buttonText = "Submit" }) {
   return (
     <Action buttonText={buttonText} onClick={onClick} showText={showText}>
       <Icon.Tick />
@@ -165,7 +180,11 @@ export function Submit({ onClick, showText = false, buttonText = 'Submit' }) {
 
 Subscribe.propTypes = ActionPropTypes;
 
-export function Subscribe({ onClick, showText = false, buttonText = 'Subscribe' }) {
+export function Subscribe({
+  onClick,
+  showText = false,
+  buttonText = "Subscribe",
+}) {
   return (
     <Action buttonText={buttonText} onClick={onClick} showText={showText}>
       <Icon.Tick />
@@ -175,7 +194,7 @@ export function Subscribe({ onClick, showText = false, buttonText = 'Subscribe' 
 
 Yes.propTypes = ActionPropTypes;
 
-export function Yes({ onClick, showText = false, buttonText = 'Yes' }) {
+export function Yes({ onClick, showText = false, buttonText = "Yes" }) {
   return (
     <Action buttonText={buttonText} onClick={onClick} showText={showText}>
       <Icon.Tick />
@@ -185,7 +204,11 @@ export function Yes({ onClick, showText = false, buttonText = 'Yes' }) {
 
 Unsubscribe.propTypes = ActionPropTypes;
 
-export function Unsubscribe({ onClick, showText = false, buttonText = 'Unsubscribe' }) {
+export function Unsubscribe({
+  onClick,
+  showText = false,
+  buttonText = "Unsubscribe",
+}) {
   return (
     <Action buttonText={buttonText} onClick={onClick} showText={showText}>
       <Icon.Cross />

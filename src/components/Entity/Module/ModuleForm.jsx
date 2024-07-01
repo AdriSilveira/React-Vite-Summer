@@ -1,39 +1,39 @@
-import { useState, useEffect } from 'react';
-import PropTypes from 'prop-types';
-import Action from '../../UI/Actions.jsx';
-import './ModuleForm.scss';
+import { useState, useEffect } from "react";
+import PropTypes from "prop-types";
+import Action from "../../UI/Actions.jsx";
+import "./ModuleForm.scss";
 
 const initialModule = {
-  ModuleName: 'New Module',
-  ModuleCode: 'XY0000',
+  ModuleName: "New Module",
+  ModuleCode: "XY0000",
   ModuleLevel: 3,
   ModuleYearID: null,
   ModuleLeaderID: null,
   ModuleImageURL:
-    'https://images.freeimages.com/images/small-previews/9b8/electronic-components-2-1242738.jpg',
+    "https://images.freeimages.com/images/small-previews/9b8/electronic-components-2-1242738.jpg",
 };
 
 function ModuleForm({ onCancel, onSuccess }) {
   // Initialisation ------------------------------
   const conformance = {
     html2js: {
-      ModuleName: (value) => (value === '' ? null : value),
-      ModuleCode: (value) => (value === '' ? null : value),
+      ModuleName: (value) => (value === "" ? null : value),
+      ModuleCode: (value) => (value === "" ? null : value),
       ModuleLevel: (value) => parseInt(value),
       ModuleYearID: (value) => (value == 0 ? null : parseInt(value)),
       ModuleLeaderID: (value) => (value == 0 ? null : parseInt(value)),
-      ModuleImageURL: (value) => (value === '' ? null : value),
+      ModuleImageURL: (value) => (value === "" ? null : value),
     },
     js2html: {
-      ModuleName: (value) => (value === null ? '' : value),
-      ModuleCode: (value) => (value === null ? '' : value),
+      ModuleName: (value) => (value === null ? "" : value),
+      ModuleCode: (value) => (value === null ? "" : value),
       ModuleLevel: (value) => value,
       ModuleYearID: (value) => (value === null ? 0 : value),
       ModuleLeaderID: (value) => (value === null ? 0 : value),
-      ModuleImageURL: (value) => (value === null ? '' : value),
+      ModuleImageURL: (value) => (value === null ? "" : value),
     },
   };
-  const apiURL = 'http://softwarehub.uk/unibase/api';
+  const apiURL = "https://softwarehub.uk/unibase/api";
   const yearsEndpoint = `${apiURL}/years`;
   const staffEndpoint = `${apiURL}/users/staff`;
   const postModuleEndpoint = `${apiURL}/modules`;
@@ -52,9 +52,9 @@ function ModuleForm({ onCancel, onSuccess }) {
   const apiPost = async (endpoint, record) => {
     // Build request object
     const request = {
-      method: 'POST',
+      method: "POST",
       body: JSON.stringify(record),
-      headers: { 'Content-type': 'application/json' },
+      headers: { "Content-type": "application/json" },
     };
 
     // Call the Fetch
@@ -95,7 +95,7 @@ function ModuleForm({ onCancel, onSuccess }) {
           <input
             type="text"
             name="ModuleName"
-            value={conformance.js2html['ModuleName'](module.ModuleName)}
+            value={conformance.js2html["ModuleName"](module.ModuleName)}
             onChange={handleChange}
           />
         </label>
@@ -105,7 +105,7 @@ function ModuleForm({ onCancel, onSuccess }) {
           <input
             type="text"
             name="ModuleCode"
-            value={conformance.js2html['ModuleCode'](module.ModuleCode)}
+            value={conformance.js2html["ModuleCode"](module.ModuleCode)}
             onChange={handleChange}
           />
         </label>
@@ -114,7 +114,7 @@ function ModuleForm({ onCancel, onSuccess }) {
           Module Level
           <select
             name="ModuleLevel"
-            value={conformance.js2html['ModuleLevel'](module.ModuleLevel)}
+            value={conformance.js2html["ModuleLevel"](module.ModuleLevel)}
             onChange={handleChange}
           >
             <option value="0" disabled>
@@ -133,7 +133,7 @@ function ModuleForm({ onCancel, onSuccess }) {
           ) : (
             <select
               name="ModuleYearID"
-              value={conformance.js2html['ModuleYearID'](module.ModuleYearID)}
+              value={conformance.js2html["ModuleYearID"](module.ModuleYearID)}
               onChange={handleChange}
             >
               <option value="0">None selected</option>
@@ -153,7 +153,9 @@ function ModuleForm({ onCancel, onSuccess }) {
           ) : (
             <select
               name="ModuleLeaderID"
-              value={conformance.js2html['ModuleLeaderID'](module.ModuleLeaderID)}
+              value={conformance.js2html["ModuleLeaderID"](
+                module.ModuleLeaderID
+              )}
               onChange={handleChange}
             >
               <option value="0">None selected</option>
@@ -171,7 +173,7 @@ function ModuleForm({ onCancel, onSuccess }) {
           <input
             type="text"
             name="ModuleImageURL"
-            value={conformance.js2html['ModuleImageURL'](module.ModuleImageURL)}
+            value={conformance.js2html["ModuleImageURL"](module.ModuleImageURL)}
             onChange={handleChange}
           />
         </label>

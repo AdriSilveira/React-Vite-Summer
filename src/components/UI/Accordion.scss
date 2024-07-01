@@ -4,6 +4,7 @@ $padding-content: 10px;
 $text-color: #190505;
 $button-size: 20px; // Customize the button size as needed
 $button-background: #00a387; // Customize the button background color
+
 .centered-accordion {
   display: flex;
   justify-content: center;
@@ -11,8 +12,8 @@ $button-background: #00a387; // Customize the button background color
   height: 90vh;
 }
 .accordion {
-  margin-left: 70px;
-  margin-right: 70px;
+  margin-left: 80px;
+  margin-right: 80px;
 
   .accordion-item {
     max-width: 100%;

@@ -3,7 +3,11 @@ import { Card } from "../../UI/Card.jsx";
 import { Grid as Grid } from "../../UI/Grid.jsx";
 import { Link } from "react-router-dom";
 import "./LogCard.scss";
+<<<<<<< Updated upstream
 //import EmptyContribution from "../data/EmptyContribution.js";
+=======
+// import EmptyContribution from "../../data/EmptyContribution.jsx";
+>>>>>>> Stashed changes
 import { useEffect, useState } from "react";
 
 function LogCard({ log, contributions, students }) {
@@ -37,9 +41,15 @@ function LogCard({ log, contributions, students }) {
     students.forEach((student) => {
       console.log(student.UserID);
       //console.log(sortedContribution[count].ContributionUserID);
+<<<<<<< Updated upstream
       if (sortedContribution[count] == undefined) {
         tempCont.push(EmptyContribution[0]);
         setCompleteContribution(tempCont);
+=======
+      if (sortedContribution[count] === undefined) {
+        const tempContA = completeContribution.concat(EmptyContribution[0]);
+        setCompleteContribution(tempContA);
+>>>>>>> Stashed changes
         console.log("a");
         console.log(tempCont);
       } else if (

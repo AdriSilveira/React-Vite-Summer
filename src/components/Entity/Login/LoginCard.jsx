@@ -1,6 +1,6 @@
 import PropTypes from "prop-types";
 import { Card } from "../../UI/Card.jsx";
-import { Link } from "react-router-dom";
+
 import "./LoginCard.scss";
 
 function ModuleCard({ module, setIsModulesView }) {

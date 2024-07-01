@@ -27,4 +27,3 @@ Card.propTypes = {
   moduleData: propTypes.object.isRequired,
   student: propTypes.object.isRequired,
 };
-

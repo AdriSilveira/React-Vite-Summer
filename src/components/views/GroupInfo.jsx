@@ -8,7 +8,7 @@ import "./GroupInfo.scss";
 
 function GroupInfo({ selectedGroupID }) {
   const SelectedGroup = selectedGroupID;
-  const apiURL = "http://softwarehub.uk/unibase/api";
+  const apiURL = "https://softwarehub.uk/unibase/api";
   const myGroupEndpoint = `${apiURL}/users/groups/${SelectedGroup}`;
   const logsEndpoint = `${apiURL}/logs`; // API endpoint for fetching logs
 
@@ -72,7 +72,6 @@ function GroupInfo({ selectedGroupID }) {
       }
     }
   };
-
 
   useEffect(() => {
     fetchGroupStudents();

@@ -3,7 +3,7 @@ import { Card } from "../../UI/Card.jsx";
 import { Grid as Grid } from "../../UI/Grid.jsx";
 import { Link } from "react-router-dom";
 import "./LogCard.scss";
-import EmptyContribution from "../../data/EmptyContribution.js";
+//import EmptyContribution from "../data/EmptyContribution.js";
 import { useEffect, useState } from "react";
 
 function LogCard({ log, contributions, students }) {
@@ -87,4 +87,3 @@ LogCard.propTypes = {
 };
 
 export default LogCard;
-

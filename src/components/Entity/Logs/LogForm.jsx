@@ -34,7 +34,7 @@ function LogForm({ onCancel, onSuccess, groupID }) {
     },
   };
 
-  const apiURL = "http://softwarehub.uk/unibase/api";
+  const apiURL = "https://softwarehub.uk/unibase/api";
   const LogEndpoint = `${apiURL}/logs/1`;
   const postLogEndpoint = `${apiURL}/logs`;
 

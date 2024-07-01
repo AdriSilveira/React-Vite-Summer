@@ -20,7 +20,7 @@ const initialLog = {
 
 function ContributionForm({ onCancel, onSuccess }) {
   // Initialisation ------------------------------
-  const apiURL = "http://softwarehub.uk/unibase/api";
+  const apiURL = "https://softwarehub.uk/unibase/api";
 
   // const conformance = {
   //   html2js: {
